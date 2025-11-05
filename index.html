@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belgapom • Word lid en groei mee met de Belgische aardappelketen</title>
+
+  <style>
+    @font-face {
+      font-family: "Paralucent";
+      src: url("fonts/Paralucent-Regular.woff2") format("woff2");
+      font-weight: 400;
+    }
+
+    :root {
+      --bp-yellow: #ffca00;
+      --bp-dark: #111111;
+      --bp-muted: #5b5b5b;
+      --bp-line: #dcdcdc;
+      --bp-bg: #ffffff;
+      --bp-radius: 26px;
+      --bp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #f4f4f4;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Paralucent", "Segoe UI", Arial, sans-serif;
+      color: var(--bp-dark);
+      background: var(--bp-bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav__brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav__links {
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.95rem;
+    }
+
+    .nav__links a {
+      position: relative;
+    }
+
+    .nav__links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--bp-yellow);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .nav__links a:hover::after,
+    .nav__links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .nav__cta {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--bp-dark);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px 120px;
+    }
+
+    section {
+      padding: 84px 0;
+      border-bottom: 1px solid var(--bp-line);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--bp-yellow);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin: 12px 0;
+    }
+
+    .section-subtitle {
+      color: var(--bp-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      gap: 56px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    .hero__copy {
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero__lede {
+      color: #2f2f2f;
+      font-size: 1.2rem;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn--primary {
+      background: var(--bp-yellow);
+      color: var(--bp-dark);
+      box-shadow: 0 18px 32px rgba(255, 202, 0, 0.28);
+    }
+
+    .btn--ghost {
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      color: var(--bp-dark);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero__visual {
+      position: relative;
+      border-radius: var(--bp-radius);
+      overflow: hidden;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
+      isolation: isolate;
+    }
+
+    .hero__visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(0, 0, 0, 0.35), transparent 60%);
+      mix-blend-mode: multiply;
+    }
+
+    .hero__badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Value grid */
+    .value-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .value-card {
+      border: 1px solid var(--bp-line);
+      border-radius: 20px;
+      padding: 28px;
+      display: grid;
+      gap: 14px;
+      transition: transform 0.3s var(--bp-ease), box-shadow 0.3s var(--bp-ease), border-color 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 202, 0, 0.6);
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.12);
+    }
+
+    .value-card figure {
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .value-card h3 {
+      font-size: 1.26rem;
+    }
+
+    .value-card p {
+      color: #414141;
+      font-size: 0.97rem;
+    }
+
+    /* Metrics */
+    .metrics {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .metric {
+      border: 1px solid rgba(255, 202, 0, 0.3);
+      border-radius: 18px;
+      padding: 22px 24px;
+      display: grid;
+      gap: 6px;
+      background: #fffef7;
+    }
+
+    .metric strong {
+      font-size: 2.2rem;
+    }
+
+    .metric span {
+      color: var(--bp-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Story */
+    .story {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: center;
+    }
+
+    .story__media {
+      border-radius: var(--bp-radius);
+      overflow: hidden;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .timeline {
+      border-left: 1px solid var(--bp-line);
+      padding-left: 28px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .timeline__item {
+      position: relative;
+      padding-left: 0;
+    }
+
+    .timeline__item::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bp-yellow);
+      left: -34px;
+      top: 6px;
+      box-shadow: 0 0 0 6px rgba(255, 202, 0, 0.18);
+    }
+
+    .timeline__year {
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: var(--bp-muted);
+      margin-bottom: 6px;
+    }
+
+    .timeline__text {
+      color: #4a4a4a;
+      font-size: 0.95rem;
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .step-card {
+      border: 1px solid var(--bp-line);
+      border-radius: 18px;
+      padding: 24px 26px;
+      position: relative;
+      display: grid;
+      gap: 10px;
+      background: #ffffff;
+    }
+
+    .step-card::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 18px;
+      right: 26px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .step-card strong {
+      font-size: 1.12rem;
+    }
+
+    .step-card p {
+      color: #4c4c4c;
+      font-size: 0.95rem;
+    }
+
+    /* Blocks */
+    blockquote {
+      border: 1px solid var(--bp-line);
+      border-radius: 20px;
+      padding: 32px;
+      background: #ffffff;
+      font-style: italic;
+      color: #464646;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 16px;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--bp-dark);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: start;
+    }
+
+    .contact-card {
+      border: 1px solid rgba(255, 202, 0, 0.3);
+      border-radius: 18px;
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-card figure {
+      margin: 0;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    form {
+      border: 1px solid var(--bp-line);
+      border-radius: 18px;
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+      background: #ffffff;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.93rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #cfcfcf;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--bp-yellow);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(255, 202, 0, 0.18);
+    }
+
+    button[type="submit"] {
+      justify-self: start;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      background: var(--bp-dark);
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 48px 32px;
+      font-size: 0.9rem;
+      color: var(--bp-muted);
+    }
+
+    /* Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: transform 0.6s var(--bp-ease), opacity 0.6s var(--bp-ease);
+    }
+
+    .bp-ready [data-animate].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: static;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .nav__links {
+        margin-left: 0;
+        justify-content: center;
+      }
+
+      main {
+        padding: 0 20px 96px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline__item::before {
+        left: -26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="nav">
+      <div class="nav__brand">Belgapom</div>
+      <div class="nav__links">
+        <a href="#voordelen">Voordelen</a>
+        <a href="#geschiedenis">Geschiedenis</a>
+        <a href="#stappen">Lid worden</a>
+        <a href="#ervaringen">Ervaringen</a>
+        <a href="#contact">Contact</a>
+        <a class="nav__cta" href="https://belgapom.be" target="_blank" rel="noopener">Naar belgapom.be</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__copy" data-animate>
+        <span class="section-eyebrow">Federatie voor handel en verwerking</span>
+        <h1 class="section-title">Word lid van Belgapom en stuur mee de toekomst van de Belgische aardappelketen</h1>
+        <p class="hero__lede">Belgapom verenigt handel, verwerking, logistiek en diensten sinds 1946. Als lid krijgt u inzichten, lobbykracht en een netwerk dat u vooruit helpt.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">Plan een kennismaking</a>
+          <a class="btn btn--ghost" href="https://belgapom.be" target="_blank" rel="noopener">Bezoek onze hoofdsite</a>
+        </div>
+      </div>
+      <div class="hero__visual" data-animate="fade-in">
+        <img src="images/belgapom-field.jpg" alt="Veld met jonge planten en handen die de bodem controleren" />
+        <span class="hero__badge">120+ leden bouwen mee aan de sector</span>
+      </div>
+    </section>
+
+    <section id="voordelen">
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Wat leden winnen</span>
+        <h2 class="section-title">Zes pijlers die waarde leveren vanaf dag één</h2>
+        <p class="section-subtitle">We combineren belangenverdediging met praktische ondersteuning, zodat u beter kan anticiperen op markt, regelgeving en innovatie.</p>
+      </div>
+      <div class="value-grid">
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Overzicht van een aardappelveld" />
+          </figure>
+          <h3>Belangenverdediging</h3>
+          <p>Wij zijn uw stem in overleg met overheden, certificeringsinstanties en ketenpartners. U volgt dossiers mee op en heeft impact.</p>
+        </article>
+
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Close-up van bodemcontrole" />
+          </figure>
+          <h3>Markt &amp; inzichten</h3>
+          <p>Eigen dashboards met prijzen, exportdata en trendrapporten zorgen voor gefundeerde beslissingen in aankoop en verkoop.</p>
+        </article>
+
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Samenwerkende collega’s op het veld" />
+          </figure>
+          <h3>Netwerk &amp; werkgroepen</h3>
+          <p>Verbinden met collega’s uit de volledige keten. Van werkgroepen tot internationale missies: u deelt kennis en ontdekt kansen.</p>
+        </article>
+
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Detail van jonge scheuten" />
+          </figure>
+          <h3>Operationele ondersteuning</h3>
+          <p>Duurzaamheidstrajecten, exportformaliteiten en kwaliteitssystemen: onze experten begeleiden u van intake tot implementatie.</p>
+        </article>
+
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Deelname aan sector-evenement" />
+          </figure>
+          <h3>Internationale zichtbaarheid</h3>
+          <p>U staat sterker op beurzen en handelsmissies. We promoten de Belgische aardappelsector samen met u in binnen- en buitenland.</p>
+        </article>
+
+        <article class="value-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Analyse van duurzaamheid" />
+          </figure>
+          <h3>Duurzaamheid &amp; certificatie</h3>
+          <p>Wij delen best practices, sjablonen en partners voor duurzaamheidsrapportage, ESG-eisen en certificatie.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Ons bereik</span>
+        <h2 class="section-title">Belgapom verbindt de sector</h2>
+        <p class="section-subtitle">Met een breed netwerk en directe lijnen naar beleidsmakers versterken we de Belgische aardappelsector op elk niveau.</p>
+      </div>
+      <div class="metrics">
+        <div class="metric" data-animate>
+          <strong>120+</strong>
+          <span>Actieve leden uit handel, verwerking, logistiek en diensten.</span>
+        </div>
+        <div class="metric" data-animate>
+          <strong>40+</strong>
+          <span>Samenwerkingen met onderzoekscentra, internationale federaties en ketenpartners.</span>
+        </div>
+        <div class="metric" data-animate>
+          <strong>24/7</strong>
+          <span>Alerts bij marktschommelingen, regelgeving en logistieke hindernissen.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="geschiedenis">
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Sinds 1946</span>
+        <h2 class="section-title">Onze geschiedenis, uw zekerheid</h2>
+        <p class="section-subtitle">We groeiden van een overlegplatform tot een strategische partner. Deze mijlpalen tonen hoe we de sector sterker maakten.</p>
+      </div>
+      <div class="story">
+        <figure class="story__media" data-animate="fade-in">
+          <img src="images/belgapom-field.jpg" alt="Historisch aardappelveld in warm licht" />
+        </figure>
+        <div class="timeline" data-animate>
+          <div class="timeline__item">
+            <div class="timeline__year">1946</div>
+            <div class="timeline__text">Oprichting om kwaliteitsstandaarden en exportkansen te bundelen voor Belgische aardappelbedrijven.</div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">1980s</div>
+            <div class="timeline__text">Structurele vertegenwoordiging in Europa en uitbouw van internationale markten met onze leden.</div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">2000s</div>
+            <div class="timeline__text">Focus op voedselveiligheid, traceerbaarheid en duurzaamheid; lancering van thematische werkgroepen.</div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">Vandaag</div>
+            <div class="timeline__text">Data-gedreven dienstverlening, snelle beleidsalerts en een digitaal platform voor leden en partners.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stappen">
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Aan de slag</span>
+        <h2 class="section-title">Zo wordt u lid van Belgapom</h2>
+        <p class="section-subtitle">Een duidelijk traject zodat u snel geniet van de voordelen.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card" data-step="Stap 01" data-animate>
+          <strong>Kennismaking</strong>
+          <p>In een eerste gesprek leren we uw bedrijf kennen en bespreken we uw verwachtingen.</p>
+        </div>
+        <div class="step-card" data-step="Stap 02" data-animate>
+          <strong>Voorstel op maat</strong>
+          <p>U ontvangt een lidmaatschapsvoorstel afgestemd op uw rol in de keten en gewenste ondersteuning.</p>
+        </div>
+        <div class="step-card" data-step="Stap 03" data-animate>
+          <strong>Onboarding &amp; toegang</strong>
+          <p>Na bevestiging krijgt u toegang tot dossiers, werkgroepen, dashboards en uw aanspreekpunten binnen Belgapom.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ervaringen">
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Wat leden zeggen</span>
+        <h2 class="section-title">Samen sta je sterker</h2>
+      </div>
+      <blockquote data-animate>
+        “Belgapom houdt ons op de hoogte van cruciale dossiers en geeft onze gesprekken met beleidsmakers extra gewicht. De combinatie van belangenverdediging en praktische tools maakt het verschil voor ons bedrijf.”
+        <cite>Sarah Verstraeten, CEO Agripot</cite>
+      </blockquote>
+    </section>
+
+    <section id="contact">
+      <div class="section-header" data-animate>
+        <span class="section-eyebrow">Contact</span>
+        <h2 class="section-title">Plan uw kennismaking met Belgapom</h2>
+        <p class="section-subtitle">Laat uw gegevens achter. Onze ledenverantwoordelijke contacteert u binnen twee werkdagen.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card" data-animate>
+          <figure>
+            <img src="images/belgapom-field.jpg" alt="Close-up van handen in vruchtbare aarde" />
+          </figure>
+          <p><strong>Belgapom</strong><br />Rue des Deux Maisons 90<br />1210 Brussel</p>
+          <p>T +32 (0)2 123 45 67<br />E info@belgapom.be</p>
+          <p>Meer weten over al onze activiteiten? Bezoek <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a>.</p>
+        </div>
+        <form action="https://example.com/form-handler" method="post" data-animate>
+          <div>
+            <label for="name">Naam</label>
+            <input type="text" id="name" name="name" placeholder="Voornaam Achternaam" required />
+          </div>
+          <div>
+            <label for="company">Bedrijf</label>
+            <input type="text" id="company" name="company" placeholder="Bedrijfsnaam" required />
+          </div>
+          <div>
+            <label for="email">E-mailadres</label>
+            <input type="email" id="email" name="email" placeholder="naam@bedrijf.be" required />
+          </div>
+          <div>
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" id="phone" name="phone" placeholder="+32 ..." />
+          </div>
+          <div>
+            <label for="segment">Segment in de keten</label>
+            <select id="segment" name="segment" required>
+              <option value="">Maak uw keuze</option>
+              <option value="handel">Handel</option>
+              <option value="verwerking">Verwerking</option>
+              <option value="logistiek">Logistiek</option>
+              <option value="diensten">Diensten &amp; ondersteuning</option>
+              <option value="anders">Andere</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Uw vraag of verwachtingen</label>
+            <textarea id="message" name="message" rows="4" placeholder="Vertel ons waar u naar op zoek bent."></textarea>
+          </div>
+          <button type="submit">Verstuur mijn aanvraag</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 Belgapom — versterkt de Belgische aardappelketen. <br />
+    Hoofdwebsite: <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.body;
+      root.classList.add("bp-ready");
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const animated = document.querySelectorAll("[data-animate]");
+
+      if (!prefersReducedMotion && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+        );
+
+        animated.forEach((el) => observer.observe(el));
+      } else {
+        animated.forEach((el) => el.classList.add("is-visible"));
+      }
+    })();
+  </script>
+</body>
+</html>
