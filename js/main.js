@@ -1,8 +1,10 @@
 (function () {
   const root = document.body;
+  root.classList.remove("no-js");
   root.classList.add("bp-ready");
 
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasMatchMedia = typeof window.matchMedia === "function";
+  const prefersReducedMotion = hasMatchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const animated = document.querySelectorAll("[data-animate]");
 
   if (!prefersReducedMotion && "IntersectionObserver" in window) {
