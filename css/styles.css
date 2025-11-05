@@ -471,10 +471,16 @@ footer {
 }
 
 /* Animations */
+
 [data-animate] {
   opacity: 0;
   transform: translateY(28px);
   transition: transform 0.6s var(--bp-ease), opacity 0.6s var(--bp-ease);
+}
+
+.no-js [data-animate] {
+  opacity: 1;
+  transform: none;
 }
 
 .bp-ready [data-animate].is-visible {
