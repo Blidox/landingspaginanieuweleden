@@ -1,8 +1,4 @@
-@font-face {
-  font-family: "Paralucent";
-  src: url("../fonts/Paralucent-Regular.woff2") format("woff2");
-  font-weight: 400;
-}
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap");
 
 :root {
   --bp-yellow: #ffca00;
@@ -25,7 +21,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Paralucent", "Segoe UI", Arial, sans-serif;
+  font-family: "Barlow", "Segoe UI", Arial, sans-serif;
   color: var(--bp-dark);
   background: var(--bp-bg);
   line-height: 1.65;
