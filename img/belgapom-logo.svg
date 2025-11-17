@@ -1,0 +1,9 @@
+<svg width="260" height="64" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Belgapom</title>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="32" cy="24" r="12" fill="#FFCA00" />
+    <ellipse cx="92" cy="20" rx="34" ry="18" fill="#2EA24D" transform="rotate(-8 92 20)" />
+    <ellipse cx="82" cy="46" rx="36" ry="20" fill="#A8D57F" transform="rotate(12 82 46)" />
+    <text x="130" y="42" font-family="Barlow, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#FFCA00">belgapom</text>
+  </g>
+</svg>
