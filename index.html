@@ -1,1421 +1,447 @@
-diff --git a/index.html b/index.html
-index 787f693f73012fd18fe7f3bcad3e12651f66460d..5351da027835de713c1fa052c61a2d9a5fc04ed0 100644
---- a/index.html
-+++ b/index.html
-@@ -1,977 +1,471 @@
- <!DOCTYPE html>
- <html lang="nl">
--<head>
--  <meta charset="UTF-8" />
--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
--  <title>Belgapom • Word lid en groei mee met de Belgische aardappelketen</title>
--
--  <style>
--    @font-face {
--      font-family: "Paralucent";
--      src: url("fonts/Paralucent-Regular.woff2") format("woff2");
--      font-weight: 400;
--    }
--
--    :root {
--      --bp-yellow: #ffca00;
--      --bp-dark: #111111;
--      --bp-muted: #5b5b5b;
--      --bp-line: #dcdcdc;
--      --bp-bg: #ffffff;
--      --bp-radius: 26px;
--      --bp-ease: cubic-bezier(0.16, 1, 0.3, 1);
--    }
--
--    * {
--      box-sizing: border-box;
--    }
--
--    html {
--      scroll-behavior: smooth;
--      background: #f4f4f4;
--    }
--
--    body {
--      margin: 0;
--      font-family: "Paralucent", "Segoe UI", Arial, sans-serif;
--      color: var(--bp-dark);
--      background: var(--bp-bg);
--      line-height: 1.65;
--    }
--
--    a {
--      color: inherit;
--      text-decoration: none;
--    }
--
--    img {
--      display: block;
--      width: 100%;
--      height: auto;
--    }
--
--    header {
--      position: sticky;
--      top: 0;
--      z-index: 10;
--      backdrop-filter: blur(12px);
--      background: rgba(255, 255, 255, 0.92);
--      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
--    }
--
--    .nav {
--      max-width: 1200px;
--      margin: 0 auto;
--      padding: 18px 32px;
--      display: flex;
--      flex-wrap: wrap;
--      align-items: center;
--      gap: 18px;
--    }
--
--    .nav__brand {
--      font-weight: 700;
--      font-size: 1.1rem;
--      letter-spacing: 0.08em;
--      text-transform: uppercase;
--    }
--
--    .nav__links {
--      margin-left: auto;
--      display: flex;
--      flex-wrap: wrap;
--      align-items: center;
--      gap: 22px;
--      font-size: 0.95rem;
--    }
--
--    .nav__links a {
--      position: relative;
--    }
--
--    .nav__links a::after {
--      content: "";
--      position: absolute;
--      left: 0;
--      bottom: -6px;
--      width: 100%;
--      height: 2px;
--      background: var(--bp-yellow);
--      transform: scaleX(0);
--      transform-origin: left;
--      transition: transform 0.25s ease;
--    }
--
--    .nav__links a:hover::after,
--    .nav__links a:focus-visible::after {
--      transform: scaleX(1);
--    }
--
--    .nav__cta {
--      padding: 10px 20px;
--      border-radius: 999px;
--      background: var(--bp-dark);
--      color: #ffffff;
--      font-weight: 600;
--    }
--
--    main {
--      max-width: 1200px;
--      margin: 0 auto;
--      padding: 0 32px 120px;
--    }
--
--    section {
--      padding: 84px 0;
--      border-bottom: 1px solid var(--bp-line);
--    }
--
--    section:last-of-type {
--      border-bottom: none;
--      padding-bottom: 0;
--    }
--
--    .section-header {
--      max-width: 680px;
--      margin-bottom: 48px;
--    }
--
--    .section-eyebrow {
--      letter-spacing: 0.14em;
--      text-transform: uppercase;
--      font-size: 0.78rem;
--      color: var(--bp-yellow);
--    }
--
--    .section-title {
--      font-size: clamp(2rem, 4vw, 2.8rem);
--      margin: 12px 0;
--    }
--
--    .section-subtitle {
--      color: var(--bp-muted);
--      font-size: 1.05rem;
--    }
--
--    /* Hero */
--    .hero {
--      display: grid;
--      gap: 56px;
--      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
--      align-items: center;
--      padding-top: 120px;
--    }
--
--    .hero__copy {
--      display: grid;
--      gap: 24px;
--    }
--
--    .hero__lede {
--      color: #2f2f2f;
--      font-size: 1.2rem;
--    }
--
--    .hero__cta {
--      display: flex;
--      flex-wrap: wrap;
--      gap: 16px;
--    }
--
--    .btn {
--      display: inline-flex;
--      align-items: center;
--      justify-content: center;
--      padding: 16px 32px;
--      border-radius: 999px;
--      font-weight: 600;
--      transition: transform 0.2s ease, box-shadow 0.2s ease;
--    }
--
--    .btn--primary {
--      background: var(--bp-yellow);
--      color: var(--bp-dark);
--      box-shadow: 0 18px 32px rgba(255, 202, 0, 0.28);
--    }
--
--    .btn--ghost {
--      border: 1px solid rgba(0, 0, 0, 0.18);
--      color: var(--bp-dark);
--    }
--
--    .btn:hover {
--      transform: translateY(-2px);
--    }
--
--    .hero__visual {
--      position: relative;
--      border-radius: var(--bp-radius);
--      overflow: hidden;
--      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
--      isolation: isolate;
--    }
--
--    .hero__visual::after {
--      content: "";
--      position: absolute;
--      inset: 0;
--      background: linear-gradient(160deg, rgba(0, 0, 0, 0.35), transparent 60%);
--      mix-blend-mode: multiply;
--    }
--
--    .hero__badge {
--      position: absolute;
--      bottom: 24px;
--      left: 24px;
--      padding: 12px 20px;
--      background: rgba(255, 255, 255, 0.82);
--      border-radius: 999px;
--      font-size: 0.85rem;
--      font-weight: 600;
--      backdrop-filter: blur(6px);
--    }
--
--    /* Value grid */
--    .value-grid {
--      display: grid;
--      gap: 28px;
--      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
--    }
--
--    .value-card {
--      border: 1px solid var(--bp-line);
--      border-radius: 20px;
--      padding: 28px;
--      display: grid;
--      gap: 14px;
--      transition: transform 0.3s var(--bp-ease), box-shadow 0.3s var(--bp-ease), border-color 0.3s ease;
--    }
--
--    .value-card:hover {
--      transform: translateY(-6px);
--      border-color: rgba(255, 202, 0, 0.6);
--      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.12);
--    }
--
--    .value-card figure {
--      margin: 0;
--      border-radius: 16px;
--      overflow: hidden;
--    }
--
--    .value-card h3 {
--      font-size: 1.26rem;
--    }
--
--    .value-card p {
--      color: #414141;
--      font-size: 0.97rem;
--    }
--
--    /* Metrics */
--    .metrics {
--      display: grid;
--      gap: 20px;
--      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
--    }
--
--    .metric {
--      border: 1px solid rgba(255, 202, 0, 0.3);
--      border-radius: 18px;
--      padding: 22px 24px;
--      display: grid;
--      gap: 6px;
--      background: #fffef7;
--    }
--
--    .metric strong {
--      font-size: 2.2rem;
--    }
--
--    .metric span {
--      color: var(--bp-muted);
--      font-size: 0.95rem;
--    }
--
--    /* Story */
--    .story {
--      display: grid;
--      gap: 32px;
--      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
--      align-items: center;
--    }
--
--    .story__media {
--      border-radius: var(--bp-radius);
--      overflow: hidden;
--      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
--    }
--
--    .timeline {
--      border-left: 1px solid var(--bp-line);
--      padding-left: 28px;
--      display: grid;
--      gap: 24px;
--    }
--
--    .timeline__item {
--      position: relative;
--      padding-left: 0;
--    }
--
--    .timeline__item::before {
--      content: "";
--      position: absolute;
--      width: 12px;
--      height: 12px;
--      border-radius: 50%;
--      background: var(--bp-yellow);
--      left: -34px;
--      top: 6px;
--      box-shadow: 0 0 0 6px rgba(255, 202, 0, 0.18);
--    }
--
--    .timeline__year {
--      letter-spacing: 0.14em;
--      text-transform: uppercase;
--      font-size: 0.82rem;
--      color: var(--bp-muted);
--      margin-bottom: 6px;
--    }
--
--    .timeline__text {
--      color: #4a4a4a;
--      font-size: 0.95rem;
--    }
--
--    /* Steps */
--    .steps {
--      display: grid;
--      gap: 18px;
--      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
--    }
--
--    .step-card {
--      border: 1px solid var(--bp-line);
--      border-radius: 18px;
--      padding: 24px 26px;
--      position: relative;
--      display: grid;
--      gap: 10px;
--      background: #ffffff;
--    }
--
--    .step-card::before {
--      content: attr(data-step);
--      position: absolute;
--      top: 18px;
--      right: 26px;
--      font-size: 0.78rem;
--      letter-spacing: 0.14em;
--      text-transform: uppercase;
--      color: rgba(0, 0, 0, 0.4);
--    }
--
--    .step-card strong {
--      font-size: 1.12rem;
--    }
--
--    .step-card p {
--      color: #4c4c4c;
--      font-size: 0.95rem;
--    }
--
--    /* Blocks */
--    blockquote {
--      border: 1px solid var(--bp-line);
--      border-radius: 20px;
--      padding: 32px;
--      background: #ffffff;
--      font-style: italic;
--      color: #464646;
--    }
--
--    blockquote cite {
--      display: block;
--      margin-top: 16px;
--      font-style: normal;
--      font-weight: 600;
--      color: var(--bp-dark);
--    }
--
--    .contact-grid {
--      display: grid;
--      gap: 28px;
--      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
--      align-items: start;
--    }
--
--    .contact-card {
--      border: 1px solid rgba(255, 202, 0, 0.3);
--      border-radius: 18px;
--      padding: 24px;
--      display: grid;
--      gap: 16px;
--    }
--
--    .contact-card figure {
--      margin: 0;
--      border-radius: 14px;
--      overflow: hidden;
--    }
--
--    form {
--      border: 1px solid var(--bp-line);
--      border-radius: 18px;
--      padding: 28px;
--      display: grid;
--      gap: 18px;
--      background: #ffffff;
--    }
--
--    label {
--      font-weight: 600;
--      font-size: 0.93rem;
--    }
--
--    input,
--    select,
--    textarea {
--      width: 100%;
--      padding: 12px 14px;
--      border-radius: 10px;
--      border: 1px solid #cfcfcf;
--      font-family: inherit;
--      font-size: 1rem;
--      background: #ffffff;
--      transition: border-color 0.2s ease, box-shadow 0.2s ease;
--    }
--
--    input:focus,
--    select:focus,
--    textarea:focus {
--      border-color: var(--bp-yellow);
--      outline: none;
--      box-shadow: 0 0 0 4px rgba(255, 202, 0, 0.18);
--    }
--
--    button[type="submit"] {
--      justify-self: start;
--      padding: 12px 28px;
--      border-radius: 999px;
--      border: none;
--      background: var(--bp-dark);
--      color: #ffffff;
--      font-weight: 600;
--      cursor: pointer;
--      transition: transform 0.2s ease;
--    }
--
--    button[type="submit"]:hover {
--      transform: translateY(-2px);
--    }
--
--    footer {
--      text-align: center;
--      padding: 48px 32px;
--      font-size: 0.9rem;
--      color: var(--bp-muted);
--    }
--
--    /* Animations */
--    [data-animate] {
--      opacity: 0;
--      transform: translateY(28px);
--      transition: transform 0.6s var(--bp-ease), opacity 0.6s var(--bp-ease);
--    }
--
--    .bp-ready [data-animate].is-visible {
--      opacity: 1;
--      transform: translateY(0);
--    }
--
--    @media (prefers-reduced-motion: reduce) {
--      * {
--        animation: none !important;
--        transition: none !important;
--        scroll-behavior: auto !important;
--      }
--
--      [data-animate] {
--        opacity: 1 !important;
--        transform: none !important;
--      }
--    }
--
--    @media (max-width: 768px) {
--      header {
--        position: static;
--      }
--
--      .nav {
--        justify-content: center;
--      }
--
--      .nav__links {
--        margin-left: 0;
--        justify-content: center;
--      }
--
--      main {
--        padding: 0 20px 96px;
--      }
--
--      section {
--        padding: 64px 0;
--      }
--
--      .timeline {
--        padding-left: 20px;
--      }
--
--      .timeline__item::before {
--        left: -26px;
--      }
--    }
--  </style>
--  <link rel="stylesheet" href="css/styles.css" />
--</head>
--
--<body>
--<body class="no-js">
--  <header>
--    <nav class="nav">
--      <div class="nav__brand">Belgapom</div>
--      <div class="nav__links">
--        <a href="#programma">Programma's</a>
--        <a href="#voordelen">Voordelen</a>
--        <a href="#geschiedenis">Geschiedenis</a>
--        <a href="#stappen">Lid worden</a>
--        <a href="#activiteiten">Activiteiten</a>
--        <a href="#ervaringen">Ervaringen</a>
--        <a href="#faq">FAQ</a>
--        <a href="#contact">Contact</a>
--        <a class="nav__cta" href="https://belgapom.be" target="_blank" rel="noopener">Naar belgapom.be</a>
--      </div>
--    </nav>
--  </header>
--
--  <main>
--    <section class="hero">
--      <div class="hero__copy" data-animate>
--        <span class="section-eyebrow">Federatie voor handel en verwerking</span>
--        <h1 class="section-title">Word lid van Belgapom en stuur mee de toekomst van de Belgische aardappelketen</h1>
--        <p class="hero__lede">Belgapom verenigt handel, verwerking, logistiek en diensten sinds 1946. Als lid krijgt u inzichten, lobbykracht en een netwerk dat u vooruit helpt.</p>
--        <div class="hero__cta">
--          <a class="btn btn--primary" href="#contact">Plan een kennismaking</a>
--          <a class="btn btn--ghost" href="https://belgapom.be" target="_blank" rel="noopener">Bezoek onze hoofdsite</a>
-+  <head>
-+    <meta charset="UTF-8" />
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+    <title>Belgapom • Word lid van de Belgische aardappelketen</title>
-+    <meta
-+      name="description"
-+      content="Belgapom begeleidt Belgische aardappelbedrijven met beleid, data, netwerken en internationale zichtbaarheid. Ontdek het programma en word lid."
-+    />
-+    <link rel="preconnect" href="https://fonts.googleapis.com" />
-+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-+    <link rel="stylesheet" href="css/styles.css" />
-+  </head>
-+  <body class="no-js">
-+    <header>
-+      <nav class="nav" aria-label="Hoofdnavigatie">
-+        <a class="nav__brand" href="#start">
-+          <img src="img/belgapom-logo.svg" alt="Belgapom" class="nav__brand-logo" />
-+          <span>Belgapom</span>
-+        </a>
-+        <div class="nav__links">
-+          <a href="#programma">Programma</a>
-+          <a href="#voordelen">Voordelen</a>
-+          <a href="#geschiedenis">Historiek</a>
-+          <a href="#activiteiten">Agenda</a>
-+          <a href="#ceo">CEO</a>
-+          <a href="#ervaringen">Testimonials</a>
-+          <a class="nav__cta" href="#contact">Word lid</a>
-         </div>
--      </div>
--      <div class="hero__visual" data-animate="fade-in">
--        <img src="images/belgapom-field.jpg" alt="Veld met jonge planten en handen die de bodem controleren" />
--        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1600&q=80" alt="Veld met jonge planten en handen die de bodem controleren" />
--        <span class="hero__badge">120+ leden bouwen mee aan de sector</span>
--      </div>
--    </section>
--
--    <section id="voordelen">
--    <div class="module-divider" aria-hidden="true"></div>
--
--    <section id="programma" class="section section--highlight">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Services voor leden</span>
--        <h2 class="section-title">Wat Belgapom voor uw organisatie activeert</h2>
--        <p class="section-subtitle">Onze federatie combineert beleidsinvloed, marktexpertise en een hands-on supportteam. Zo behaalt u sneller impact bij klanten, overheden en partners.</p>
--      </div>
--      <div class="program-grid">
--        <article class="program-card" data-animate>
--          <span class="program-card__icon" aria-hidden="true">🛡️</span>
--          <h3>Beleid &amp; compliance coaching</h3>
--          <p>We vertalen Europese en Belgische dossiers naar concrete acties voor uw bedrijf en begeleiden audits van A tot Z.</p>
--          <ul class="program-card__list">
--            <li>Snelle updates bij nieuwe regelgeving</li>
--            <li>Persoonlijke briefing met sectoradviseurs</li>
--            <li>Checklist voor certificeringsmomenten</li>
-+      </nav>
-+    </header>
-+
-+    <main id="start">
-+      <section class="hero" aria-labelledby="hero-title">
-+        <div class="hero__copy" data-animate>
-+          <span class="section-eyebrow">Belgische aardappelketen</span>
-+          <h1 id="hero-title">Word lid van de federatie die handel, verwerking en innovatie verbindt</h1>
-+          <p class="hero__lede">
-+            Belgapom vertegenwoordigt meer dan 120 bedrijven en vormt de brug tussen ondernemers, beleidsmakers en internationale
-+            markten. U krijgt data, dossiers en een netwerk dat klaarstaat om te helpen.
-+          </p>
-+          <ul class="hero__list">
-+            <li>Directe toegang tot beleidsinformatie en sectorcijfers</li>
-+            <li>Workshops, handelsmissies en taskforces op maat</li>
-+            <li>Ondersteuning bij export, duurzaamheid en communicatie</li>
-           </ul>
--        </article>
--
--        <article class="program-card" data-animate>
--          <span class="program-card__icon" aria-hidden="true">📊</span>
--          <h3>Data &amp; marktverkenning</h3>
--          <p>Via dashboards, benchmarkreports en ledenpanels ontdekt u groeisegmenten en prijsontwikkelingen in realtime.</p>
--          <ul class="program-card__list">
--            <li>Exclusieve export- en consumptiecijfers</li>
--            <li>Maandelijkse marktpulse-webinars</li>
--            <li>Signaalmeldingen bij disrupties</li>
--          </ul>
--        </article>
--
--        <article class="program-card" data-animate>
--          <span class="program-card__icon" aria-hidden="true">🤝</span>
--          <h3>Netwerk &amp; innovatie</h3>
--          <p>Sluit aan bij innovatieprojecten, werkgroepen en matchmaking met technologie- en logistieke partners.</p>
--          <ul class="program-card__list">
--            <li>Living labs rond duurzaamheid</li>
--            <li>Internationale handelsmissies</li>
--            <li>Introducties tot investeerders &amp; start-ups</li>
--          </ul>
--        </article>
--      </div>
--
--      <div class="program-footer" data-animate>
--        <div class="program-footer__stat">
--          <strong>92%</strong>
--          <span>van de leden verlengt jaarlijks zijn lidmaatschap.</span>
--        </div>
--        <div class="program-footer__cta">
--          <p>Ontvang een preview van het ledenplatform en ons dienstverleningsplan.</p>
--          <a class="btn btn--dark" href="#contact">Vraag een demo</a>
-+          <div class="hero__cta">
-+            <a class="btn btn--primary" href="#contact">Plan een kennismaking</a>
-+            <a class="btn btn--ghost" href="#voordelen">Ontdek de voordelen</a>
-+          </div>
-         </div>
--      </div>
--    </section>
--
--    <div class="module-divider module-divider--soft" aria-hidden="true"></div>
--
--    <section id="voordelen" class="section section--tint section--sunrise">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Wat leden winnen</span>
--        <h2 class="section-title">Zes pijlers die waarde leveren vanaf dag één</h2>
--        <p class="section-subtitle">We combineren belangenverdediging met praktische ondersteuning, zodat u beter kan anticiperen op markt, regelgeving en innovatie.</p>
--      </div>
--      <div class="value-grid">
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Overzicht van een aardappelveld" />
--            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1200&q=80" alt="Overzicht van een aardappelveld" loading="lazy" />
--          </figure>
--          <h3>Belangenverdediging</h3>
--          <p>Wij zijn uw stem in overleg met overheden, certificeringsinstanties en ketenpartners. U volgt dossiers mee op en heeft impact.</p>
--        </article>
--
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Close-up van bodemcontrole" />
--            <img src="https://images.unsplash.com/photo-1598514982833-5ce5770087b7?auto=format&fit=crop&w=1200&q=80" alt="Close-up van bodemcontrole" loading="lazy" />
--          </figure>
--          <h3>Markt &amp; inzichten</h3>
--          <p>Eigen dashboards met prijzen, exportdata en trendrapporten zorgen voor gefundeerde beslissingen in aankoop en verkoop.</p>
--        </article>
--
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Samenwerkende collega’s op het veld" />
--            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Samenwerkende collega’s op het veld" loading="lazy" />
--          </figure>
--          <h3>Netwerk &amp; werkgroepen</h3>
--          <p>Verbinden met collega’s uit de volledige keten. Van werkgroepen tot internationale missies: u deelt kennis en ontdekt kansen.</p>
--        </article>
--
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Detail van jonge scheuten" />
--            <img src="https://images.unsplash.com/photo-1525926472923-c8d8564c6e8d?auto=format&fit=crop&w=1200&q=80" alt="Detail van jonge scheuten" loading="lazy" />
--          </figure>
--          <h3>Operationele ondersteuning</h3>
--          <p>Duurzaamheidstrajecten, exportformaliteiten en kwaliteitssystemen: onze experten begeleiden u van intake tot implementatie.</p>
--        </article>
--
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Deelname aan sector-evenement" />
--            <img src="https://images.unsplash.com/photo-1529694157878-0d3e4edb6d8f?auto=format&fit=crop&w=1200&q=80" alt="Deelname aan sector-evenement" loading="lazy" />
--          </figure>
--          <h3>Internationale zichtbaarheid</h3>
--          <p>U staat sterker op beurzen en handelsmissies. We promoten de Belgische aardappelsector samen met u in binnen- en buitenland.</p>
--        </article>
--
--        <article class="value-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Analyse van duurzaamheid" />
--            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=1200&q=80" alt="Analyse van duurzaamheid" loading="lazy" />
--          </figure>
--          <h3>Duurzaamheid &amp; certificatie</h3>
--          <p>Wij delen best practices, sjablonen en partners voor duurzaamheidsrapportage, ESG-eisen en certificatie.</p>
--        </article>
--      </div>
--    </section>
--
--    <section>
--    <div class="module-divider" aria-hidden="true"></div>
-+        <figure class="hero__visual" data-animate>
-+          <img
-+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1400&q=80"
-+            alt="Landschap met aardappelvelden bij zonsondergang"
-+            loading="lazy"
-+          />
-+          <div class="hero__badge">120+ leden bouwen mee</div>
-+        </figure>
-+      </section>
- 
--    <section class="section section--tint section--dawn">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Ons bereik</span>
--        <h2 class="section-title">Belgapom verbindt de sector</h2>
--        <p class="section-subtitle">Met een breed netwerk en directe lijnen naar beleidsmakers versterken we de Belgische aardappelsector op elk niveau.</p>
--      </div>
--      <div class="metrics">
--        <div class="metric" data-animate>
--          <strong>120+</strong>
--          <span>Actieve leden uit handel, verwerking, logistiek en diensten.</span>
-+      <section id="programma" class="section section--highlight" aria-labelledby="programma-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Programma</span>
-+          <h2 id="programma-title">Alles wat u nodig heeft om impact te maken</h2>
-+          <p class="section-subtitle">Gebaseerd op best practices van succesvolle federatiepagina’s: heldere pijlers, concrete services en een duidelijke instap.</p>
-         </div>
--        <div class="metric" data-animate>
--          <strong>40+</strong>
--          <span>Samenwerkingen met onderzoekscentra, internationale federaties en ketenpartners.</span>
-+        <div class="program-grid">
-+          <article class="program-card" data-animate>
-+            <span class="program-card__icon">🧭</span>
-+            <h3>Beleid &amp; belangen</h3>
-+            <p>Volg de dossiers die uw business raken en krijg invloed op de besluitvorming.</p>
-+            <ul class="program-card__list">
-+              <li>Realtime dossierupdates en wekelijkse briefing</li>
-+              <li>Werkgroepen per segment met directe feedbacklijn</li>
-+              <li>Toolkits voor compliance en auditaanpak</li>
-+            </ul>
-+          </article>
-+          <article class="program-card" data-animate>
-+            <span class="program-card__icon">📊</span>
-+            <h3>Data &amp; marktinzichten</h3>
-+            <p>Benchmark uw bedrijf via dashboards, prijsindices en exportrapporten.</p>
-+            <ul class="program-card__list">
-+              <li>Marktalerts en seizoensbarometers</li>
-+              <li>Exclusieve analyses van productie en handel</li>
-+              <li>Gebruiksklare presentaties voor uw management</li>
-+            </ul>
-+          </article>
-+          <article class="program-card" data-animate>
-+            <span class="program-card__icon">🤝</span>
-+            <h3>Netwerk &amp; groei</h3>
-+            <p>Ontmoet peers, beleidsmakers en internationale kopers tijdens events en missies.</p>
-+            <ul class="program-card__list">
-+              <li>Community-platform met directe messaging</li>
-+              <li>Handelsmissies en gezamenlijke beursstanden</li>
-+              <li>Innovatietafels rond duurzaamheid en digitalisering</li>
-+            </ul>
-+          </article>
-         </div>
--        <div class="metric" data-animate>
--          <strong>24/7</strong>
--          <span>Alerts bij marktschommelingen, regelgeving en logistieke hindernissen.</span>
-+        <div class="program-footer" data-animate>
-+          <div class="program-footer__stat">
-+            <strong>95%</strong>
-+            <span>van de leden verlengt het lidmaatschap jaarlijks.</span>
-+          </div>
-+          <div class="program-footer__cta">
-+            <p>Word lid en ontdek hoe Belgapom uw team versterkt.</p>
-+            <a class="btn btn--dark" href="#stappen">Bekijk het stappenplan</a>
-+          </div>
-         </div>
--      </div>
--    </section>
--
--    <section id="geschiedenis">
--    <div class="module-divider module-divider--soft" aria-hidden="true"></div>
--
--    <section id="activiteiten" class="section section--tint section--sunset">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Agenda &amp; inspiratie</span>
--        <h2 class="section-title">Komende activiteiten voor leden</h2>
--        <p class="section-subtitle">Van ronde tafels tot internationale missies: kies de ontmoetingen die uw team versterken.</p>
--      </div>
--      <div class="event-grid">
--        <article class="event-card" data-animate>
--          <span class="event-card__date">05 maart 2024</span>
--          <h3>Strategische tafelsessie circulaire verwerking</h3>
--          <p>Interactieve werksessie met beleidsmakers en innovatiepartners over circulair water- en energiegebruik.</p>
--          <ul class="event-card__list">
--            <li>Locatie: Kortrijk</li>
--            <li>Voor: verwerkers &amp; logistieke partners</li>
--            <li>Max. 40 deelnemers</li>
--          </ul>
--          <a class="event-card__link" href="#contact">Reserveer uw plaats</a>
--        </article>
-+      </section>
- 
--        <article class="event-card" data-animate>
--          <span class="event-card__date">22 april 2024</span>
--          <h3>Handelsmissie Verenigd Koninkrijk</h3>
--          <p>Ontdek retail- en foodservicekansen met begeleiding van lokale experts en contacten met importeurs.</p>
--          <ul class="event-card__list">
--            <li>Locatie: Londen &amp; Manchester</li>
--            <li>Voor: exportgerichte bedrijven</li>
--            <li>Inclusief matchmaking</li>
--          </ul>
--          <a class="event-card__link" href="#contact">Vraag het programma aan</a>
--        </article>
--
--        <article class="event-card" data-animate>
--          <span class="event-card__date">16 mei 2024</span>
--          <h3>Workshop data-intelligentie voor aankoopteams</h3>
--          <p>Leer hoe u marktsignalen analyseert en dashboards inzet voor een wendbare aankoopstrategie.</p>
--          <ul class="event-card__list">
--            <li>Locatie: Digitaal</li>
--            <li>Voor: aankopers &amp; category managers</li>
--            <li>Inclusief templatepakket</li>
--          </ul>
--          <a class="event-card__link" href="#contact">Ontvang de uitnodiging</a>
--        </article>
--      </div>
--    </section>
--
--    <div class="module-divider" aria-hidden="true"></div>
-+      <section id="voordelen" class="section" aria-labelledby="voordelen-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Voordelen</span>
-+          <h2 id="voordelen-title">Concrete resultaten voor elke schakel</h2>
-+          <p class="section-subtitle">Geïnspireerd op toporganisaties: korte blokken met beeld, duidelijke benefit en praktische uitleg.</p>
-+        </div>
-+        <div class="value-grid">
-+          <article class="value-card" data-animate>
-+            <figure>
-+              <img
-+                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
-+                alt="Vergadering tussen ondernemers"
-+                loading="lazy"
-+              />
-+            </figure>
-+            <h3>Snelle policy alerts</h3>
-+            <p>We bundelen regelgeving en impactanalyses zodat u voorbereid onderhandelt.</p>
-+          </article>
-+          <article class="value-card" data-animate>
-+            <figure>
-+              <img
-+                src="https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?auto=format&fit=crop&w=900&q=80"
-+                alt="Data dashboard"
-+                loading="lazy"
-+              />
-+            </figure>
-+            <h3>Marktdata die telt</h3>
-+            <p>Ontvang dashboards, prijsindices en exporttrends in een veilig ledenportaal.</p>
-+          </article>
-+          <article class="value-card" data-animate>
-+            <figure>
-+              <img
-+                src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?auto=format&fit=crop&w=900&q=80"
-+                alt="Internationaal event"
-+                loading="lazy"
-+              />
-+            </figure>
-+            <h3>Internationale zichtbaarheid</h3>
-+            <p>We presenteren uw bedrijf tijdens buitenlandse missies en gezamenlijke stands.</p>
-+          </article>
-+          <article class="value-card" data-animate>
-+            <figure>
-+              <img
-+                src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?auto=format&fit=crop&w=900&q=80"
-+                alt="Duurzaamheidsproject"
-+                loading="lazy"
-+              />
-+            </figure>
-+            <h3>Duurzaamheid &amp; certificatie</h3>
-+            <p>Experts begeleiden u bij ESG-rapportage, audits en communicatie naar klanten.</p>
-+          </article>
-+        </div>
-+      </section>
- 
--    <section id="geschiedenis" class="section section--tint section--linen">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Sinds 1946</span>
--        <h2 class="section-title">Onze geschiedenis, uw zekerheid</h2>
--        <p class="section-subtitle">We groeiden van een overlegplatform tot een strategische partner. Deze mijlpalen tonen hoe we de sector sterker maakten.</p>
--      </div>
--      <div class="story">
--        <figure class="story__media" data-animate="fade-in">
--          <img src="images/belgapom-field.jpg" alt="Historisch aardappelveld in warm licht" />
--          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1400&q=80" alt="Historisch aardappelveld in warm licht" loading="lazy" />
--        </figure>
--        <div class="timeline" data-animate>
--          <div class="timeline__item">
--            <div class="timeline__year">1946</div>
--            <div class="timeline__text">Oprichting om kwaliteitsstandaarden en exportkansen te bundelen voor Belgische aardappelbedrijven.</div>
-+      <section id="impact" class="section section--tint section--sunrise" aria-labelledby="impact-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Impact</span>
-+          <h2 id="impact-title">Belgapom verbindt de hele keten</h2>
-+          <p class="section-subtitle">Kerncijfers gebaseerd op succesvolle lidmaatschapspagina’s geven direct vertrouwen.</p>
-+        </div>
-+        <div class="metrics">
-+          <div class="metric" data-animate>
-+            <strong>120+</strong>
-+            <span>Actieve leden uit handel, verwerking, logistiek en services.</span>
-           </div>
--          <div class="timeline__item">
--            <div class="timeline__year">1980s</div>
--            <div class="timeline__text">Structurele vertegenwoordiging in Europa en uitbouw van internationale markten met onze leden.</div>
-+          <div class="metric" data-animate>
-+            <strong>40+</strong>
-+            <span>Strategische partners en onderzoeksinstellingen.</span>
-           </div>
--          <div class="timeline__item">
--            <div class="timeline__year">2000s</div>
--            <div class="timeline__text">Focus op voedselveiligheid, traceerbaarheid en duurzaamheid; lancering van thematische werkgroepen.</div>
-+          <div class="metric" data-animate>
-+            <strong>24/7</strong>
-+            <span>Alerts bij marktschommelingen en regelgeving.</span>
-           </div>
--          <div class="timeline__item">
--            <div class="timeline__year">Vandaag</div>
--            <div class="timeline__text">Data-gedreven dienstverlening, snelle beleidsalerts en een digitaal platform voor leden en partners.</div>
-+        </div>
-+      </section>
-+
-+      <section id="geschiedenis" class="section section--tint section--linen" aria-labelledby="geschiedenis-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Sinds 1946</span>
-+          <h2 id="geschiedenis-title">Onze geschiedenis en samenwerking met FVPhouse</h2>
-+          <p class="section-subtitle">
-+            Van kwaliteitsstandaarden tot internationale promotie: Belgapom bouwde stap voor stap aan een sterke federatie en werkt vandaag nauw samen met FVPhouse.
-+          </p>
-+        </div>
-+        <div class="story">
-+          <figure class="story__media" data-animate>
-+            <img
-+              src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80"
-+              alt="Historisch aardappelveld"
-+              loading="lazy"
-+            />
-+          </figure>
-+          <div class="story__details">
-+            <div class="timeline" data-animate>
-+              <div class="timeline__item">
-+                <div class="timeline__year">1946</div>
-+                <div class="timeline__text">Opgericht als overlegplatform dat kwaliteitsstandaarden harmoniseert.</div>
-+              </div>
-+              <div class="timeline__item">
-+                <div class="timeline__year">1980s</div>
-+                <div class="timeline__text">Structurele vertegenwoordiging in Europa en eerste gezamenlijke missies.</div>
-+              </div>
-+              <div class="timeline__item">
-+                <div class="timeline__year">2000s</div>
-+                <div class="timeline__text">Focus op voedselveiligheid, traceerbaarheid en duurzaamheid met werkgroepen.</div>
-+              </div>
-+              <div class="timeline__item">
-+                <div class="timeline__year">Vandaag</div>
-+                <div class="timeline__text">Digitale dashboards, snelle beleidsalerts en partnerships met FVPhouse.</div>
-+              </div>
-+            </div>
-+            <div class="story__note" data-animate>
-+              <h3>Link met FVPhouse</h3>
-+              <p>
-+                Belgapom is een trotse partner binnen <a href="https://fvphouse.be" target="_blank" rel="noopener">FVPhouse</a>, het huis van de Belgische aardappel-, groenten- en fruitsector. Samen ontwikkelen we gezamenlijke projecten rond promotie, innovatie en internationale zichtbaarheid.
-+              </p>
-+              <p>
-+                Ontdek meer over onze historiek op <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a> en lees hoe FVPhouse ons netwerk versterkt.
-+              </p>
-+            </div>
-           </div>
-         </div>
--      </div>
--    </section>
--
--    <section id="stappen">
--    <div class="module-divider module-divider--soft" aria-hidden="true"></div>
-+      </section>
- 
--    <section id="stappen" class="section section--tint section--sunrise">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Aan de slag</span>
--        <h2 class="section-title">Zo wordt u lid van Belgapom</h2>
--        <p class="section-subtitle">Een duidelijk traject zodat u snel geniet van de voordelen.</p>
--      </div>
--      <div class="steps">
--        <div class="step-card" data-step="Stap 01" data-animate>
--          <strong>Kennismaking</strong>
--          <p>In een eerste gesprek leren we uw bedrijf kennen en bespreken we uw verwachtingen.</p>
-+      <section id="ceo" class="section section--tint section--sunset" aria-labelledby="ceo-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Leiderschap</span>
-+          <h2 id="ceo-title">Maak kennis met CEO Christophe Vermeulen</h2>
-+          <p class="section-subtitle">Een persoonlijke introductie geïnspireerd op moderne ledenpagina’s versterkt vertrouwen.</p>
-         </div>
--        <div class="step-card" data-step="Stap 02" data-animate>
--          <strong>Voorstel op maat</strong>
--          <p>U ontvangt een lidmaatschapsvoorstel afgestemd op uw rol in de keten en gewenste ondersteuning.</p>
--        </div>
--        <div class="step-card" data-step="Stap 03" data-animate>
--          <strong>Onboarding &amp; toegang</strong>
--          <p>Na bevestiging krijgt u toegang tot dossiers, werkgroepen, dashboards en uw aanspreekpunten binnen Belgapom.</p>
-+        <div class="ceo" data-animate>
-+          <figure class="ceo__image">
-+            <img
-+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80"
-+              alt="Portret van Christophe Vermeulen"
-+              loading="lazy"
-+            />
-+          </figure>
-+          <div class="ceo__bio">
-+            <p>
-+              Christophe Vermeulen stuurt Belgapom aan met een duidelijke ambitie: een duurzame, innovatieve Belgische aardappelketen die internationaal het verschil maakt. Hij verbindt leden, overheid en partners rond concrete doelen.
-+            </p>
-+            <blockquote class="ceo__quote">
-+              “We bouwen elke dag aan een federatie die ondernemers vooruit helpt met kennis, invloed en vertrouwen.”
-+            </blockquote>
-+            <div class="ceo__meta">
-+              <strong>Christophe Vermeulen</strong>
-+              <span>CEO Belgapom</span>
-+            </div>
-+            <a class="btn btn--ghost" href="#contact">Plan een gesprek met Christophe</a>
-+          </div>
-         </div>
--      </div>
--    </section>
--
--    <section id="ervaringen">
--    <div class="module-divider" aria-hidden="true"></div>
--
--    <section id="ervaringen" class="section section--tint section--dawn">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Wat leden zeggen</span>
--        <h2 class="section-title">Samen sta je sterker</h2>
--      </div>
--      <blockquote data-animate>
--        “Belgapom houdt ons op de hoogte van cruciale dossiers en geeft onze gesprekken met beleidsmakers extra gewicht. De combinatie van belangenverdediging en praktische tools maakt het verschil voor ons bedrijf.”
--        <cite>Sarah Verstraeten, CEO Agripot</cite>
--      </blockquote>
--    </section>
--
--    <section id="contact">
--    <div class="module-divider module-divider--soft" aria-hidden="true"></div>
-+      </section>
- 
--    <section class="cta-ribbon" data-animate>
--      <div class="cta-ribbon__content">
--        <span class="cta-ribbon__eyebrow">Belgapom Community</span>
--        <h2>Groei mee met een netwerk dat deuren opent</h2>
--        <p>Ontvang toegang tot beleidsdossiers, marktdata en peers die uw uitdagingen begrijpen.</p>
--      </div>
--      <div class="cta-ribbon__actions">
--        <a class="btn btn--primary" href="#contact">Plan een kennismaking</a>
--        <a class="btn btn--ghost" href="#voordelen">Bekijk de voordelen</a>
--      </div>
--    </section>
--
--    <div class="module-divider" aria-hidden="true"></div>
--
--    <section id="faq" class="section section--tint section--linen">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Veelgestelde vragen</span>
--        <h2 class="section-title">Alles wat u wil weten voor u lid wordt</h2>
--        <p class="section-subtitle">Vind snel antwoorden of neem contact met ons op voor een persoonlijk gesprek.</p>
--      </div>
--      <div class="faq-list">
--        <details class="faq-item" data-animate>
--          <summary>Voor welke bedrijven is Belgapom lidmaatschap bedoeld?</summary>
--          <p>Onze leden vertegenwoordigen handel, verwerking, logistiek, diensten en technologie. Bent u actief in of voor de aardappelketen? Dan bent u welkom.</p>
--        </details>
--        <details class="faq-item" data-animate>
--          <summary>Wat is de gemiddelde doorlooptijd tussen aanvraag en lidmaatschap?</summary>
--          <p>Na een kennismakingsgesprek ontvangt u binnen vijf werkdagen een voorstel. Uw toegang tot het ledenplatform activeren we doorgaans binnen tien werkdagen.</p>
--        </details>
--        <details class="faq-item" data-animate>
--          <summary>Kunnen meerdere teamleden gebruikmaken van de diensten?</summary>
--          <p>Zeker. Elke organisatie krijgt meerdere logins. U kan collega’s voor specifieke werkgroepen aanduiden zodat zij updates rechtstreeks ontvangen.</p>
--        </details>
--        <details class="faq-item" data-animate>
--          <summary>Zijn er bijkomende kosten voor events of missies?</summary>
--          <p>Leden genieten van verlaagde tarieven en soms gratis deelname. Eventuele reiskosten en maatwerktrajecen stemmen we op voorhand met u af.</p>
--        </details>
--      </div>
--    </section>
-+      <section id="ervaringen" class="section" aria-labelledby="ervaringen-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Testimonials</span>
-+          <h2 id="ervaringen-title">Wat leden vertellen</h2>
-+          <p class="section-subtitle">Elementen uit referentiepagina’s: korte quotes, duidelijke naam en segment.</p>
-+        </div>
-+        <div class="testimonials">
-+          <article class="testimonial-card" data-animate>
-+            <p>
-+              “Belgapom vertaalt complexe Europese dossiers naar duidelijke acties. Dankzij de taskforces staan we altijd één stap voor.”
-+            </p>
-+            <div class="testimonial-card__meta">
-+              <strong>Sarah Verstraeten</strong>
-+              <span>CEO, Agripot</span>
-+            </div>
-+          </article>
-+          <article class="testimonial-card" data-animate>
-+            <p>
-+              “Het ledenportaal bundelt cijfers, templates en contactpersonen. Dat spaart mijn team uren werk per week.”
-+            </p>
-+            <div class="testimonial-card__meta">
-+              <strong>Geert Naessens</strong>
-+              <span>Operations Director, Flandria Logistics</span>
-+            </div>
-+          </article>
-+          <article class="testimonial-card" data-animate>
-+            <p>
-+              “De gezamenlijke missies met FVPhouse openen deuren bij internationale kopers die we anders nooit ontmoeten.”
-+            </p>
-+            <div class="testimonial-card__meta">
-+              <strong>Laura Claes</strong>
-+              <span>Sales Lead, TerraNova</span>
-+            </div>
-+          </article>
-+        </div>
-+      </section>
- 
--    <div class="module-divider module-divider--soft" aria-hidden="true"></div>
-+      <section id="activiteiten" class="section section--tint section--dawn" aria-labelledby="activiteiten-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Agenda</span>
-+          <h2 id="activiteiten-title">Komende activiteiten</h2>
-+          <p class="section-subtitle">Programma-inspiratie uit membership landingspagina’s: data, doelgroep en duidelijke CTA.</p>
-+        </div>
-+        <div class="event-grid">
-+          <article class="event-card" data-animate>
-+            <span class="event-card__date">05 maart 2024</span>
-+            <h3>Strategische tafelsessie circulaire verwerking</h3>
-+            <p>Interactieve werksessie met beleidsmakers over water- en energiegebruik.</p>
-+            <ul class="event-card__list">
-+              <li>Locatie: Kortrijk</li>
-+              <li>Voor: verwerkers &amp; logistieke partners</li>
-+              <li>Max. 40 deelnemers</li>
-+            </ul>
-+            <a class="event-card__link" href="#contact">Reserveer uw plaats</a>
-+          </article>
-+          <article class="event-card" data-animate>
-+            <span class="event-card__date">22 april 2024</span>
-+            <h3>Handelsmissie Verenigd Koninkrijk</h3>
-+            <p>Ontdek retail- en foodservicekansen met begeleiding van lokale experts.</p>
-+            <ul class="event-card__list">
-+              <li>Locatie: Londen &amp; Manchester</li>
-+              <li>Voor: exportgerichte bedrijven</li>
-+              <li>Inclusief matchmaking</li>
-+            </ul>
-+            <a class="event-card__link" href="#contact">Vraag het programma aan</a>
-+          </article>
-+          <article class="event-card" data-animate>
-+            <span class="event-card__date">16 mei 2024</span>
-+            <h3>Workshop data-intelligentie voor aankoopteams</h3>
-+            <p>Leer hoe u marktsignalen analyseert en dashboards inzet voor aankoop.</p>
-+            <ul class="event-card__list">
-+              <li>Locatie: Digitaal</li>
-+              <li>Voor: aankopers &amp; category managers</li>
-+              <li>Inclusief templatepakket</li>
-+            </ul>
-+            <a class="event-card__link" href="#contact">Ontvang de uitnodiging</a>
-+          </article>
-+        </div>
-+      </section>
- 
--    <section id="contact" class="section section--tint section--evening">
--      <div class="section-header" data-animate>
--        <span class="section-eyebrow">Contact</span>
--        <h2 class="section-title">Plan uw kennismaking met Belgapom</h2>
--        <p class="section-subtitle">Laat uw gegevens achter. Onze ledenverantwoordelijke contacteert u binnen twee werkdagen.</p>
--      </div>
--      <div class="contact-grid">
--        <div class="contact-card" data-animate>
--          <figure>
--            <img src="images/belgapom-field.jpg" alt="Close-up van handen in vruchtbare aarde" />
--            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="Close-up van handen in vruchtbare aarde" loading="lazy" />
--          </figure>
--          <p><strong>Belgapom</strong><br />Rue des Deux Maisons 90<br />1210 Brussel</p>
--          <p>T +32 (0)2 123 45 67<br />E info@belgapom.be</p>
--          <p>Meer weten over al onze activiteiten? Bezoek <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a>.</p>
-+      <section id="stappen" class="section" aria-labelledby="stappen-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Aan de slag</span>
-+          <h2 id="stappen-title">Zo wordt u lid</h2>
-+          <p class="section-subtitle">Een compact stappenplan – typisch op wervingspagina’s – houdt de drempel laag.</p>
-         </div>
--        <form action="https://example.com/form-handler" method="post" data-animate>
--          <div>
--            <label for="name">Naam</label>
--            <input type="text" id="name" name="name" placeholder="Voornaam Achternaam" required />
--          </div>
--          <div>
--            <label for="company">Bedrijf</label>
--            <input type="text" id="company" name="company" placeholder="Bedrijfsnaam" required />
--          </div>
--          <div>
--            <label for="email">E-mailadres</label>
--            <input type="email" id="email" name="email" placeholder="naam@bedrijf.be" required />
-+        <div class="steps">
-+          <div class="step-card" data-step="Stap 01" data-animate>
-+            <strong>Kennismaking</strong>
-+            <p>We leren uw bedrijf kennen en bepalen welke dossiers prioritair zijn.</p>
-           </div>
--          <div>
--            <label for="phone">Telefoonnummer</label>
--            <input type="tel" id="phone" name="phone" placeholder="+32 ..." />
-+          <div class="step-card" data-step="Stap 02" data-animate>
-+            <strong>Voorstel op maat</strong>
-+            <p>U ontvangt een lidmaatschapsvoorstel met duidelijke verwachtingen en voordelen.</p>
-           </div>
--          <div>
--            <label for="segment">Segment in de keten</label>
--            <select id="segment" name="segment" required>
--              <option value="">Maak uw keuze</option>
--              <option value="handel">Handel</option>
--              <option value="verwerking">Verwerking</option>
--              <option value="logistiek">Logistiek</option>
--              <option value="diensten">Diensten &amp; ondersteuning</option>
--              <option value="anders">Andere</option>
--            </select>
-+          <div class="step-card" data-step="Stap 03" data-animate>
-+            <strong>Onboarding &amp; toegang</strong>
-+            <p>Uw team krijgt toegang tot het ledenplatform, events en contactpersonen.</p>
-           </div>
--          <div>
--            <label for="message">Uw vraag of verwachtingen</label>
--            <textarea id="message" name="message" rows="4" placeholder="Vertel ons waar u naar op zoek bent."></textarea>
--          </div>
--          <button type="submit">Verstuur mijn aanvraag</button>
--        </form>
--      </div>
--    </section>
--  </main>
-+        </div>
-+      </section>
- 
--  <footer>
--    © 2024 Belgapom — versterkt de Belgische aardappelketen. <br />
--    Hoofdwebsite: <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a>
--  </footer>
-+      <section class="cta-ribbon" aria-labelledby="cta-title" data-animate>
-+        <div class="cta-ribbon__content">
-+          <span class="cta-ribbon__eyebrow">Belgapom community</span>
-+          <h2 id="cta-title">Sta dichter bij beslissers, data en internationale kopers</h2>
-+          <p>Word lid en ervaar hoe de federatie u elke dag ondersteunt.</p>
-+        </div>
-+        <div class="cta-ribbon__actions">
-+          <a class="btn btn--dark" href="#contact">Word lid</a>
-+          <a class="btn btn--ghost" href="#programma">Bekijk het programma</a>
-+        </div>
-+      </section>
- 
--  <script>
--    (function () {
--      const root = document.body;
--      root.classList.add("bp-ready");
-+      <section id="faq" class="section section--tint section--linen" aria-labelledby="faq-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">FAQ</span>
-+          <h2 id="faq-title">Veelgestelde vragen</h2>
-+        </div>
-+        <div class="faq-list">
-+          <details class="faq-item" data-animate>
-+            <summary>Voor welke bedrijven is Belgapom lidmaatschap bedoeld?</summary>
-+            <p>Voor alle spelers in de aardappelketen: handel, verwerking, logistiek, diensten en technologiepartners.</p>
-+          </details>
-+          <details class="faq-item" data-animate>
-+            <summary>Hoe snel krijg ik toegang tot het ledenplatform?</summary>
-+            <p>Na goedkeuring ontvangt u binnen tien werkdagen logins en een persoonlijke onboarding.</p>
-+          </details>
-+          <details class="faq-item" data-animate>
-+            <summary>Kunnen meerdere collega’s deelnemen aan events?</summary>
-+            <p>Zeker, u kan meerdere teamleden registreren en specifieke werkgroepen aanduiden.</p>
-+          </details>
-+          <details class="faq-item" data-animate>
-+            <summary>Zijn internationale missies inbegrepen?</summary>
-+            <p>Leden genieten van verlaagde tarieven en coördinatie samen met FVPhouse en partners.</p>
-+          </details>
-+        </div>
-+      </section>
- 
--      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
--      const animated = document.querySelectorAll("[data-animate]");
-+      <section id="contact" class="section section--tint section--evening" aria-labelledby="contact-title">
-+        <div class="section-header" data-animate>
-+          <span class="section-eyebrow">Contact</span>
-+          <h2 id="contact-title">Plan uw kennismaking</h2>
-+          <p class="section-subtitle">Laat uw gegevens achter. Onze ledenverantwoordelijke neemt binnen twee werkdagen contact op.</p>
-+        </div>
-+        <div class="contact-grid">
-+          <div class="contact-card" data-animate>
-+            <figure>
-+              <img
-+                src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80"
-+                alt="Handen in vruchtbare aarde"
-+                loading="lazy"
-+              />
-+            </figure>
-+            <p><strong>Belgapom</strong><br />Rue des Deux Maisons 90<br />1210 Brussel</p>
-+            <p>T +32 (0)2 123 45 67<br />E info@belgapom.be</p>
-+            <p>
-+              Meer weten? Bezoek <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a> of onze partner <a href="https://fvphouse.be" target="_blank" rel="noopener">fvphouse.be</a>.
-+            </p>
-+          </div>
-+          <form action="https://example.com/form-handler" method="post" data-animate>
-+            <div>
-+              <label for="name">Naam</label>
-+              <input type="text" id="name" name="name" placeholder="Voornaam Achternaam" required />
-+            </div>
-+            <div>
-+              <label for="company">Bedrijf</label>
-+              <input type="text" id="company" name="company" placeholder="Bedrijfsnaam" required />
-+            </div>
-+            <div>
-+              <label for="email">E-mailadres</label>
-+              <input type="email" id="email" name="email" placeholder="naam@bedrijf.be" required />
-+            </div>
-+            <div>
-+              <label for="phone">Telefoonnummer</label>
-+              <input type="tel" id="phone" name="phone" placeholder="+32 ..." />
-+            </div>
-+            <div>
-+              <label for="segment">Segment in de keten</label>
-+              <select id="segment" name="segment" required>
-+                <option value="">Maak uw keuze</option>
-+                <option value="handel">Handel</option>
-+                <option value="verwerking">Verwerking</option>
-+                <option value="logistiek">Logistiek</option>
-+                <option value="diensten">Diensten &amp; ondersteuning</option>
-+                <option value="anders">Andere</option>
-+              </select>
-+            </div>
-+            <div>
-+              <label for="message">Uw vraag of verwachtingen</label>
-+              <textarea id="message" name="message" rows="4" placeholder="Vertel ons waar u naar op zoek bent."></textarea>
-+            </div>
-+            <button type="submit">Verstuur mijn aanvraag</button>
-+          </form>
-+        </div>
-+      </section>
-+    </main>
- 
--      if (!prefersReducedMotion && "IntersectionObserver" in window) {
--        const observer = new IntersectionObserver(
--          (entries) => {
--            entries.forEach((entry) => {
--              if (entry.isIntersecting) {
--                entry.target.classList.add("is-visible");
--                observer.unobserve(entry.target);
--              }
--            });
--          },
--          { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
--        );
-+    <footer>
-+      © 2024 Belgapom — versterkt de Belgische aardappelketen. Hoofdwebsite: <a href="https://belgapom.be" target="_blank" rel="noopener">belgapom.be</a>
-+    </footer>
- 
--        animated.forEach((el) => observer.observe(el));
--      } else {
--        animated.forEach((el) => el.classList.add("is-visible"));
--      }
--    })();
--  </script>
--  <script src="js/main.js"></script>
--</body>
-+    <script src="js/main.js" defer></script>
-+  </body>
- </html>
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belgapom • Landingspagina voor nieuwe leden</title>
+    <meta
+      name="description"
+      content="Ontdek hoe Belgapom Belgische aardappelbedrijven verbindt met beleid, data en netwerk. Word lid en versnel je groei."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="no-js">
+    <header class="site-header" id="home">
+      <div class="nav container">
+        <a class="nav__brand" href="#home" aria-label="Belgapom home">
+          <img class="nav__brand-logo" src="img/belgapom-logo.svg" alt="Belgapom logo" />
+          <span>Belgapom</span>
+        </a>
+        <nav class="nav__links" aria-label="Primaire">
+          <a href="#programma">Programma</a>
+          <a href="#voordelen">Voordelen</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn btn--dark nav__cta" href="#contact">Plan een kennismaking</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__decor hero__decor--left" aria-hidden="true"></div>
+        <div class="hero__decor hero__decor--right" aria-hidden="true"></div>
+        <div class="container hero__grid">
+          <div class="hero__copy" data-animate>
+            <p class="eyebrow">Federatie Belgapom</p>
+            <h1>Word lid van de federatie die handel, verwerking en innovatie verbindt.</h1>
+            <p class="lede">
+              Belgapom is de motor achter de Belgische aardappelketen. Wij versterken je onderneming met data,
+              beleidsimpact en een actief netwerk van verwerkers, handelaren en innovators.
+            </p>
+            <div class="hero__chips">
+              <span>Beleid & belangen</span>
+              <span>Realtime marktdata</span>
+              <span>Internationale missies</span>
+            </div>
+            <ul class="hero__bullets">
+              <li>Directe beleidsbriefings en alerts</li>
+              <li>Toegang tot marktdata & exportinzichten</li>
+              <li>Community van ondernemers en experten</li>
+            </ul>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#contact">Plan een kennismaking</a>
+              <a class="btn btn--ghost" href="#voordelen">Ontdek de voordelen</a>
+            </div>
+            <div class="hero__statbar" aria-label="Belangrijke Belgapom-waarden">
+              <article>
+                <span>+850K ton</span>
+                <p>Jaarlijks volume vertegenwoordigd door onze leden.</p>
+              </article>
+              <article>
+                <span>6 hubs</span>
+                <p>Regionale werktafels over innovatie, export en duurzaamheid.</p>
+              </article>
+              <article>
+                <span>48 u</span>
+                <p>Reactietijd van jouw vaste aanspreekpunt.</p>
+              </article>
+            </div>
+          </div>
+          <div class="hero__visual" data-animate>
+            <div class="hero__panel">
+              <figure class="hero-figure" aria-hidden="true">
+                <svg viewBox="0 0 420 360" role="img" focusable="false">
+                  <title>Illustratie van aardappelvelden en logistiek</title>
+                  <rect width="420" height="360" rx="32" fill="#fef6d0" />
+                  <rect x="28" y="36" width="160" height="120" rx="22" fill="#ffffff" stroke="#ffca00" stroke-width="4" />
+                  <circle cx="80" cy="84" r="32" fill="#ffca00" />
+                  <rect x="220" y="48" width="168" height="92" rx="22" fill="#111111" />
+                  <rect x="220" y="168" width="168" height="140" rx="26" fill="#ffffff" stroke="#111111" stroke-width="4" />
+                  <path d="M40 260 C120 220, 200 340, 360 300" fill="none" stroke="#ffca00" stroke-width="10" stroke-linecap="round" />
+                  <path d="M34 300 h352" stroke="#111111" stroke-width="6" stroke-linecap="round" />
+                  <circle cx="270" cy="112" r="12" fill="#ffca00" />
+                  <circle cx="308" cy="112" r="12" fill="#ffca00" />
+                  <circle cx="346" cy="112" r="12" fill="#ffca00" />
+                  <rect x="60" y="190" width="110" height="90" rx="18" fill="#ffffff" stroke="#111111" stroke-width="4" />
+                  <path d="M70 250 c22-18 42-18 64 0" fill="none" stroke="#ffca00" stroke-width="8" stroke-linecap="round" />
+                </svg>
+              </figure>
+              <div class="hero-card hero-card--overlay">
+                <p class="hero-card__eyebrow">Impact 2023</p>
+                <h2>+72 ledenbedrijven</h2>
+                <p>Verbonden via 18 beleidsdossiers, 45 werkgroepen en 6 exportmissies.</p>
+                <dl class="hero-card__stats">
+                  <div>
+                    <dt>Beleid & belangen</dt>
+                    <dd>32 interventies</dd>
+                  </div>
+                  <div>
+                    <dt>Marktinzicht</dt>
+                    <dd>110 dashboards</dd>
+                  </div>
+                </dl>
+                <span class="hero-card__note">Elke lidorganisatie krijgt een persoonlijk aanspreekpunt.</span>
+              </div>
+            </div>
+            <div class="hero-card hero-card--secondary">
+              <p class="hero-card__eyebrow">Acties dit kwartaal</p>
+              <ul>
+                <li>Community summit Brussel</li>
+                <li>Missie Duitsland & Azië</li>
+                <li>Nieuwe ledenhub features</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="programma" class="section">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">Programma</p>
+            <h2 class="section-title">Drie pijlers die jouw groei versnellen</h2>
+            <p class="section-subtitle">
+              Elk Belgapom-lid krijgt toegang tot een gebalanceerd programma met strategie, inzichten en community.
+            </p>
+          </div>
+          <div class="card-grid" data-animate>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">⚖️</div>
+            <h3>Beleid & belangen</h3>
+            <p>Impactvolle lobby en permanente monitoring van Europese en Belgische regelgeving.</p>
+            <ul>
+              <li>Briefings met beleidsmakers</li>
+              <li>Ondersteuning bij certificering</li>
+              <li>Spoedalerts bij wijzigingen</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📊</div>
+            <h3>Data & marktinzichten</h3>
+            <p>Toegang tot dashboards, exportdata en trends in consumptie, prijs en duurzaamheid.</p>
+            <ul>
+              <li>Realtime marktmonitor</li>
+              <li>Benchmarkrapporten</li>
+              <li>Toekomstscenario’s</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🤝</div>
+            <h3>Netwerk & groei</h3>
+            <p>Een community van ondernemers, kennisinstellingen en internationale partners.</p>
+            <ul>
+              <li>Werkgroepen en communities</li>
+              <li>Internationale missies</li>
+              <li>Talent- en innovatieplatform</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="voordelen" class="section section--tint">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">Voordelen</p>
+            <h2 class="section-title">Wat leden vandaag ontvangen</h2>
+            <p class="section-subtitle">Selecteer de diensten die het best passen bij jouw team.</p>
+          </div>
+          <div class="benefit-grid">
+            <article class="benefit" data-animate>
+              <h3>Policy alerts</h3>
+              <p>Wekelijkse updates en ad-hoc waarschuwingen met duiding van experts.</p>
+            </article>
+          <article class="benefit" data-animate>
+            <h3>Marktdata hub</h3>
+            <p>Dashboards met prijsindices, consumptiepatronen en exportvolumes.</p>
+          </article>
+          <article class="benefit" data-animate>
+            <h3>Zichtbaarheid</h3>
+            <p>Laat je bedrijf zien op events, in publicaties en gezamenlijke campagnes.</p>
+          </article>
+          <article class="benefit" data-animate>
+            <h3>Duurzaamheidscoaching</h3>
+            <p>Concrete tools rond water, energie en circulariteit in samenwerking met FVPhouse.</p>
+          </article>
+          <article class="benefit" data-animate>
+            <h3>Expert hotline</h3>
+            <p>Contacteer onze juristen en marktspecialisten voor maatadvies.</p>
+          </article>
+            <article class="benefit" data-animate>
+              <h3>Community platform</h3>
+              <p>Deel cases, vacatures en innovatieprojecten met collega-leden.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="impact">
+        <div class="container">
+          <div class="metrics" data-animate>
+          <article class="metric">
+            <span class="metric__label">Ledenretentie</span>
+            <strong>97%</strong>
+            <p>Bedrijven blijven aan boord dankzij tastbare resultaten.</p>
+          </article>
+          <article class="metric">
+            <span class="metric__label">Beleidsdossiers</span>
+            <strong>18</strong>
+            <p>Van export tot voedselveiligheid en duurzaamheid.</p>
+          </article>
+          <article class="metric">
+            <span class="metric__label">Collectieve projecten</span>
+            <strong>24</strong>
+            <p>Innovatietrajecten in samenwerking met FVPhouse en partners.</p>
+          </article>
+        </div>
+          <div class="story" data-animate>
+            <div>
+              <p class="eyebrow">Historiek & samenwerking</p>
+              <h2 class="section-title">Van familiebedrijf tot internationale speler</h2>
+              <p>
+                Belgapom is sinds 1947 het aanspreekpunt voor de Belgische aardappelketen. Vanuit het FVPhouse bouwen we
+                een krachtig ecosysteem met logistieke hubs, onderzoekers en exportagentschappen.
+              </p>
+              <p>
+                Leden verbinden zich via thematische werkgroepen en krijgen toegang tot exclusieve missies richting Frankrijk,
+                Duitsland en Azië. Elke missie wordt begeleid door beleidsadviseurs zodat je dossiers meteen mee evolueren.
+              </p>
+            </div>
+            <ol class="timeline">
+              <li>
+                <strong>1947</strong>
+                <span>Oprichting Belgapom met focus op handelsbescherming.</span>
+              </li>
+              <li>
+                <strong>2000</strong>
+                <span>Integratie in FVPhouse en start internationale missies.</span>
+              </li>
+              <li>
+                <strong>2023</strong>
+                <span>Digitale ledenhub en realtime marktmonitor uitgerold.</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section leader">
+        <div class="container">
+          <div class="leader__card" data-animate>
+            <p class="eyebrow">Christophe Vermeulen</p>
+            <h2>“We bundelen de stem van de Belgische aardappelsector.”</h2>
+            <p>
+              Onze CEO en het volledige team staan klaar met 1-op-1 begeleiding. Elke vraag wordt opgevolgd binnen 48 uur,
+              zodat je nooit alleen staat in gesprekken met overheden of partners.
+            </p>
+            <a class="btn btn--primary" href="#contact">Praat met Christophe</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">Testimonials</p>
+            <h2 class="section-title">Waarom leden vertrouwen op Belgapom</h2>
+          </div>
+          <div class="testimonial-grid">
+          <article class="testimonial" data-animate>
+            <p>
+              “Dankzij de beleidsalerts waren we voorbereid op de nieuwe exportregelgeving en konden we onze planning tijdig aanpassen.”
+            </p>
+            <strong>Els Van Eyck</strong>
+            <span>COO, PomVar</span>
+          </article>
+          <article class="testimonial" data-animate>
+            <p>
+              “De marktdata hub geeft ons realtime inzicht in prijsbewegingen. Het helpt ons commerciële team elke week beslissen.”
+            </p>
+            <strong>Joachim Smeyers</strong>
+            <span>Sales Director, TubereX</span>
+          </article>
+          <article class="testimonial" data-animate>
+            <p>
+              “Tijdens de missie naar Duitsland ontmoetten we nieuwe afnemers en partners. Zonder Belgapom waren we er niet geraakt.”
+            </p>
+            <strong>Anneleen Claes</strong>
+            <span>CEO, TerraNova Foods</span>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section agenda" id="agenda">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">Agenda</p>
+            <h2 class="section-title">Komende momenten</h2>
+          </div>
+          <div class="event-grid">
+          <article class="event" data-animate>
+            <div>
+              <span class="event__date">12 mrt</span>
+              <h3>Policy lab: export Europa</h3>
+              <p>Deep dive in douanevereisten en logistiek met FAVV.</p>
+            </div>
+            <a class="btn btn--ghost" href="#contact">Reserveer plaats</a>
+          </article>
+          <article class="event" data-animate>
+            <div>
+              <span class="event__date">28 apr</span>
+              <h3>Innovatiemissie Duitsland</h3>
+              <p>Bezoek aan verwerkers en onderzoekscentra in Nedersaksen.</p>
+            </div>
+            <a class="btn btn--ghost" href="#contact">Vraag info</a>
+          </article>
+          <article class="event" data-animate>
+            <div>
+              <span class="event__date">15 mei</span>
+              <h3>Community summit</h3>
+              <p>Netwerkdag met leden, partners en keynote van FVPhouse.</p>
+            </div>
+            <a class="btn btn--ghost" href="#contact">Schrijf in</a>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section steps" id="stappenplan">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">Stappenplan</p>
+            <h2 class="section-title">Zo word je lid in minder dan drie weken</h2>
+          </div>
+          <ol class="stepper" data-animate>
+            <li>
+              <strong>1. Kennismaking</strong>
+              <p>Plan een call met het lidmaatschapsteam en deel je ambities.</p>
+            </li>
+          <li>
+            <strong>2. Programma kiezen</strong>
+            <p>We selecteren de juiste werkgroepen, data-abonnementen en missies.</p>
+          </li>
+          <li>
+            <strong>3. Onboarding</strong>
+            <p>Je krijgt toegang tot de ledenhub en een vaste relatiebeheerder.</p>
+          </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="cta-ribbon" data-animate>
+        <div class="container cta-ribbon__inner">
+          <div>
+            <h2>Klaar om lid te worden?</h2>
+            <p>Ontdek hoe Belgapom jouw organisatie versterkt met beleid, data en netwerk.</p>
+          </div>
+          <a class="btn btn--dark" href="#contact">Plan mijn gesprek</a>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="container">
+          <div class="section-header" data-animate>
+            <p class="eyebrow">FAQ</p>
+            <h2 class="section-title">Veelgestelde vragen</h2>
+          </div>
+          <div class="faq__list" data-animate>
+            <details>
+              <summary>Wat kost een Belgapom-lidmaatschap?</summary>
+              <p>De bijdrage hangt af van je bedrijfsomzet. We bespreken dit tijdens de intake en voorzien een transparant voorstel.</p>
+          </details>
+          <details>
+            <summary>Kan ik meerdere collega’s aansluiten?</summary>
+            <p>Ja, elke lidorganisatie kan onbeperkt collega’s registreren voor werkgroepen en events.</p>
+          </details>
+          <details>
+            <summary>Hoe snel ontvang ik marktdata?</summary>
+            <p>Na ondertekening krijg je binnen 48 uur toegang tot de ledenhub en realtime dashboards.</p>
+          </details>
+            <details>
+              <summary>Bieden jullie ondersteuning bij export?</summary>
+              <p>We voorzien begeleiding bij certificatie, connecties met logistieke partners en gezamenlijke handelsmissies.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container contact__grid">
+          <div class="contact__intro" data-animate>
+            <p class="eyebrow">Contact</p>
+            <h2 class="section-title">Plan je kennismaking</h2>
+            <p>
+              Vul het formulier in en we contacteren je binnen twee werkdagen. Liever direct bellen? +32 (0)2 123 45 67.
+            </p>
+            <ul class="contact__details">
+              <li>FVPhouse, Koningsstraat 72, 1000 Brussel</li>
+              <li>info@belgapom.be</li>
+              <li>BTW BE 0123.456.789</li>
+            </ul>
+          </div>
+          <form class="contact__form" data-animate>
+            <label>
+              Naam
+              <input type="text" name="name" placeholder="Voor- en achternaam" required />
+            </label>
+            <label>
+              Organisatie
+              <input type="text" name="company" placeholder="Bedrijfsnaam" required />
+            </label>
+            <label>
+              E-mail
+              <input type="email" name="email" placeholder="naam@bedrijf.be" required />
+            </label>
+            <label>
+              Telefoon
+              <input type="tel" name="phone" placeholder="+32" />
+            </label>
+            <label class="full">
+              Waarmee kunnen we helpen?
+              <textarea name="message" rows="4" placeholder="Beschrijf je vraag" required></textarea>
+            </label>
+            <button class="btn btn--primary" type="submit">Verstuur mijn aanvraag</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© <span id="year"></span> Belgapom. Alle rechten voorbehouden.</p>
+        <a href="#home">Terug naar boven</a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
