@@ -3,12 +3,63 @@
   box-sizing: border-box;
 }
 
+/* Kleurvariabelen voor eenvoudige theming */
+:root {
+  /* Kleurenpalet: primaire kleur (geel), secundaire kleur (blauwgroen),
+     lichte en donkere tinten.  Pas deze waarden gerust aan om
+     aan te sluiten bij de gewenste huisstijl. */
+  --primary: #FFCA00;
+  --secondary: #006671;
+  --light: #ffffff;
+  --dark: #333333;
+  --light-grey: #f9f9f9;
+  --shadow: rgba(0, 0, 0, 0.05);
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  color: #333;
-  background-color: #f5f7f7;
+  color: var(--dark);
+  background-color: var(--light);
   line-height: 1.6;
+}
+
+/* ------------ Algemene structuur -------------- */
+
+/* Container used in header to constrain width */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Main site header with logo and navigation */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: var(--light);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.logo img {
+  height: 48px;
+}
+
+.main-nav a {
+  margin-left: 25px;
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--primary);
 }
 
 h1, h2, h3 {
@@ -21,15 +72,54 @@ p {
 
 /* Hero sectie */
 .hero {
-  background-color: #006671;
-  color: #ffffff;
-  padding: 80px 20px;
+  /* tijdelijke debugkleur om achtergrond zichtbaar te maken */
+  /* background-color: #ffeeee; */
+  position: relative;
+  color: var(--dark);
   text-align: center;
+  /* Maak de hero-sectie hoog zodat de achtergrondafbeelding zichtbaar is */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+  /* De achtergrondafbeelding en overlay worden toegevoegd via pseudo-elementen (zie hieronder) */
+
+  /* Zorg ervoor dat pseudo-elementen binnen de hero zichtbaar blijven boven de bodyachtergrond */
+  z-index: 0;
 }
 
 .hero-content {
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* Achtergrondbeeld en overlay voor de hero via pseudo-elementen */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Gebruik de mand met aardappelen als hero-afbeelding voor een warme uitstraling */
+  /* Gebruik de moderne industriefoto van de aardappelverwerking als achtergrond */
+  background-image: url('images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Licht gekleurde overlay voor betere leesbaarheid op de hero-afbeelding */
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: -1;
 }
 
 .hero h1 {
@@ -44,8 +134,8 @@ p {
 
 .cta-btn {
   display: inline-block;
-  background-color: #ffc400;
-  color: #006671;
+  background-color: var(--primary);
+  color: var(--secondary);
   padding: 12px 30px;
   font-weight: bold;
   border: none;
@@ -55,7 +145,7 @@ p {
 }
 
 .cta-btn:hover {
-  background-color: #ffb300;
+  background-color: #e6b500;
   color: #003d42;
 }
 
@@ -64,6 +154,10 @@ p {
   padding: 60px 20px;
   max-width: 1100px;
   margin: 0 auto;
+  /* Verberg secties bij het laden zodat ze later met animatie kunnen verschijnen */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .section.light {
@@ -71,7 +165,7 @@ p {
 }
 
 .section h2 {
-  color: #006671;
+  color: var(--secondary);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -84,14 +178,163 @@ p {
   margin-top: 30px;
 }
 
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: var(--light-grey);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.benefit i {
+  font-size: 32px;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
 .benefit h3 {
-  color: #006671;
+  color: var(--secondary);
   margin-bottom: 10px;
 }
 
 .benefit p {
   font-size: 0.95rem;
   line-height: 1.4;
+}
+
+/* Statistieken */
+.stats-section {
+  padding-top: 60px;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 30px;
+}
+
+.stat {
+  background-color: var(--light-grey);
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stat i {
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.stat .number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+.stat p {
+  margin-top: 5px;
+  color: var(--dark);
+}
+
+/* Sector sectie */
+.sector-section .sector-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.sector-text {
+  flex: 1 1 450px;
+}
+
+.sector-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.sector-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Patroonsectie voor call-to-action */
+.pattern-section {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)), url('images/pattern.png');
+  background-size: 300px;
+  background-repeat: repeat;
+  border-radius: 10px;
+}
+
+/* Contactformulier verbeteringen */
+.contact-form input,
+.contact-form textarea {
+  background-color: var(--light-grey);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact-form button {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: #e6b500;
+  color: #003d42;
+}
+
+/* Footer verbeteringen */
+.footer {
+  background-color: var(--secondary);
+  color: var(--light);
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Fade-in animatie: standaard secties zijn verborgen en verschijnen zodra ze in beeld komen */
+.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Responsiviteit voor sectorsectie en grids */
+@media (max-width: 768px) {
+  .sector-section .sector-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Infographic */
@@ -117,7 +360,7 @@ p {
 
 .contact-form label {
   font-weight: bold;
-  color: #006671;
+  color: var(--secondary);
 }
 
 .contact-form input,
@@ -133,8 +376,8 @@ p {
 }
 
 .contact-form button {
-  background-color: #006671;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--secondary);
   padding: 12px;
   font-size: 1rem;
   border: none;
@@ -144,7 +387,7 @@ p {
 }
 
 .contact-form button:hover {
-  background-color: #004f56;
+  background-color: #e6b500;
 }
 
 /* Footer */
