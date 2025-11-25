@@ -5,11 +5,11 @@
 
 /* Kleurvariabelen voor eenvoudige theming */
 :root {
-  /* Kleurenpalet: primaire kleur (geel), secundaire kleur (blauwgroen),
-     lichte en donkere tinten.  Pas deze waarden gerust aan om
-     aan te sluiten bij de gewenste huisstijl. */
+  /* Kleurenpalet: primaire kleur (geel) en neutrale kleuren. De secundaire
+     kleur gebruiken we als basiskleur voor tekst en donkere vlakken. */
   --primary: #FFCA00;
-  --secondary: #006671;
+  /* Donkere basiskleur voor tekst en footer. Vermijd blauwe/groene tinten */
+  --secondary: #333333;
   --light: #ffffff;
   --dark: #333333;
   --light-grey: #f9f9f9;
@@ -43,7 +43,8 @@ body {
   top: 0;
   z-index: 999;
   background-color: var(--light);
-  box-shadow: 0 2px 4px var(--shadow);
+  /* Gebruik een subtiele onderrand in plaats van een zware schaduw */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
 .logo img {
@@ -83,8 +84,8 @@ p {
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px;
-  /* De achtergrondafbeelding en overlay worden toegevoegd via pseudo-elementen (zie hieronder) */
-
+  /* Achtergrond zonder fotografie: subtiele gele gradient */
+  background: linear-gradient(135deg, rgba(255, 202, 0, 0.15) 0%, rgba(255, 202, 0, 0.05) 100%);
   /* Zorg ervoor dat pseudo-elementen binnen de hero zichtbaar blijven boven de bodyachtergrond */
   z-index: 0;
 }
@@ -96,30 +97,29 @@ p {
 
 /* Achtergrondbeeld en overlay voor de hero via pseudo-elementen */
 .hero::before {
+  /* Grote decoratieve cirkel linksboven in de hero */
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* Gebruik de mand met aardappelen als hero-afbeelding voor een warme uitstraling */
-  /* Gebruik de moderne industriefoto van de aardappelverwerking als achtergrond */
-  background-image: url('images/hero.jpg');
-  background-size: cover;
-  background-position: center;
+  top: -60px;
+  left: -60px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 202, 0, 0.25);
+  border-radius: 50%;
   z-index: -2;
 }
 
 .hero::after {
+  /* Decoratieve cirkel rechtsonder in de hero */
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* Licht gekleurde overlay voor betere leesbaarheid op de hero-afbeelding */
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: -1;
+  bottom: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 202, 0, 0.1);
+  border-radius: 50%;
+  z-index: -2;
 }
 
 .hero h1 {
@@ -146,7 +146,7 @@ p {
 
 .cta-btn:hover {
   background-color: #e6b500;
-  color: #003d42;
+  color: var(--secondary);
 }
 
 /* Secties */
@@ -247,7 +247,7 @@ p {
   display: block;
   font-size: 2.2rem;
   font-weight: bold;
-  color: var(--secondary);
+  color: var(--primary);
 }
 
 .stat p {
@@ -256,36 +256,24 @@ p {
 }
 
 /* Sector sectie */
+/* Sector sectie: gebruik een eenvoudige kolomlayout om tekst te centreren. */
 .sector-section .sector-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.sector-text {
-  flex: 1 1 450px;
-}
-
-.sector-image {
-  flex: 1 1 400px;
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.sector-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+.sector-section .sector-text {
+  margin: 0 auto;
 }
 
 /* Patroonsectie voor call-to-action */
+/* Patroonsectie voor call-to-action: subtiel herhalend patroon zonder afbeeldingen */
 .pattern-section {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)), url('images/pattern.png');
-  background-size: 300px;
-  background-repeat: repeat;
-  border-radius: 10px;
+  /* Eenvoudige lichte achtergrond voor call-to-action sectie */
+  background-color: var(--light-grey);
+  border-radius: 8px;
+  padding: 60px 20px;
 }
 
 /* Contactformulier verbeteringen */
@@ -312,15 +300,16 @@ p {
 
 .contact-form button:hover {
   background-color: #e6b500;
-  color: #003d42;
+  color: var(--secondary);
 }
 
-/* Footer verbeteringen */
+/* Footer styling */
 .footer {
   background-color: var(--secondary);
   color: var(--light);
   text-align: center;
-  padding: 20px 10px;
+  padding: 30px 20px;
+  font-size: 0.9rem;
 }
 
 /* Fade-in animatie: standaard secties zijn verborgen en verschijnen zodra ze in beeld komen */
@@ -390,17 +379,11 @@ p {
   background-color: #e6b500;
 }
 
-/* Footer */
-.footer {
-  background-color: #006671;
-  color: #ffffff;
-  text-align: center;
-  padding: 20px 10px;
-}
-
+/* Footer: links in footer */
 .footer a {
-  color: #ffe066;
+  color: var(--primary);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .footer a:hover {
