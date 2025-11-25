@@ -43,8 +43,20 @@ body {
   top: 0;
   z-index: 999;
   background-color: var(--light);
-  /* Gebruik een subtiele onderrand in plaats van een zware schaduw */
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  /* Subtiele onderrand om de header te scheiden van de content */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Container voor de header wanneer alleen het logo wordt getoond */
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.header-container .logo img {
+  height: 50px;
 }
 
 .logo img {
@@ -151,17 +163,26 @@ p {
 
 /* Secties */
 .section {
+  /* Standaard stijling voor contentblokken */
   padding: 60px 20px;
   max-width: 1100px;
-  margin: 0 auto;
-  /* Verberg secties bij het laden zodat ze later met animatie kunnen verschijnen */
+  margin: 40px auto;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  /* Verborgen bij laden om fade‑in animatie mogelijk te maken */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .section.light {
-  background-color: #ffffff;
+  background-color: var(--light);
+}
+
+/* Alternatieve achtergrond voor een subtiel contrast tussen secties */
+.section.grey {
+  background-color: var(--light-grey);
 }
 
 .section h2 {
@@ -268,15 +289,21 @@ p {
 }
 
 /* Patroonsectie voor call-to-action */
-/* Patroonsectie voor call-to-action: subtiel herhalend patroon zonder afbeeldingen */
-.pattern-section {
-  /* Eenvoudige lichte achtergrond voor call-to-action sectie */
-  background-color: var(--light-grey);
-  border-radius: 8px;
-  padding: 60px 20px;
+/* Call-to-action sectie krijgt automatisch de standaard sectiestijlen; aanvullende styling kan via .cta-section worden toegevoegd indien nodig. */
+
+/* Contactformulier stijlen */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 15px;
 }
 
-/* Contactformulier verbeteringen */
+.contact-form label {
+  font-weight: bold;
+  color: var(--secondary);
+}
+
 .contact-form input,
 .contact-form textarea {
   background-color: var(--light-grey);
@@ -287,20 +314,25 @@ p {
   width: 100%;
 }
 
+.contact-form textarea {
+  resize: vertical;
+}
+
 .contact-form button {
   background-color: var(--primary);
   color: var(--secondary);
-  border-radius: 25px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
   padding: 12px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
 .contact-form button:hover {
   background-color: #e6b500;
-  color: var(--secondary);
 }
 
 /* Footer styling */
@@ -339,45 +371,7 @@ p {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Contactformulier */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 15px;
-}
-
-.contact-form label {
-  font-weight: bold;
-  color: var(--secondary);
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.contact-form textarea {
-  resize: vertical;
-}
-
-.contact-form button {
-  background-color: var(--primary);
-  color: var(--secondary);
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.contact-form button:hover {
-  background-color: #e6b500;
-}
+/* (oude dubbele contactformulier stijlen verwijderd) */
 
 /* Footer: links in footer */
 .footer a {
