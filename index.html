@@ -1,273 +1,563 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Belgapom – Word lid van onze sectorvereniging</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- FontAwesome voor iconen -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-o8Cz+DrTdfW+lxh0f5eYn2KcJYFElrG5zE9oa1+zE4d7GU9Bx0qrDEyOCo30fj6FO13Nl4m6uJKNkQwF0lyFZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--
-      Deze pagina is een eenvoudige landingspagina waarmee potentiële leden
-      kennis kunnen maken met Belgapom. Gebruik de bijgevoegde CSS voor
-      styling; pas gerust kleuren en lettertypes aan om te laten aansluiten
-      bij de huisstijl.  De infographic wordt weergegeven in het gedeelte
-      "Infographic".  Indien u andere bestanden of secties toevoegt,
-      zorg dan dat deze mobiel responsief blijven.
-    -->
-  </head>
-  <body>
-    <!-- Vast header alleen met logo -->
-    <header class="main-header">
-      <div class="container header-container">
-        <a href="#" class="logo"><img src="images/logo.png" alt="Belgapom logo" /></a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belgapom – Federatie voor aardappelhandel en -verwerking</title>
+  <style>
+    /*
+      Basisstijl en variabelen
+
+      Dit ontwerp gebruikt een beperkt aantal kleurtinten om een professioneel en
+      rustig geheel te creëren. Met CSS‑variabelen kunnen kleuren makkelijk
+      aangepast worden. Voor typografie is gekozen voor een systeemlettertype
+      (Arial/Helvetica) waardoor de pagina snel laadt en overal leesbaar blijft.
+    */
+    :root {
+      --primary: #FFCA00; /* geel voor accenten */
+      --dark: #333333;   /* donkergrijs voor tekst */
+      --light: #f5f5f5;  /* lichtgrijs voor afwisseling in achtergronden */
+      --bg: #ffffff;     /* standaard achtergrondkleur */
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    /* Header met eenvoudige logoweergave */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: var(--dark);
+    }
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--primary);
+    }
+
+    /* Basisopmaak voor secties */
+    section {
+      padding: 4rem 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section.alt-bg {
+      background: var(--light);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      color: var(--dark);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Algemene knoppenstijl */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .btn.primary {
+      background: var(--primary);
+      color: var(--dark);
+    }
+    .btn.primary:hover {
+      background: #e6b400; /* donkerder geel bij hover */
+    }
+    .btn.secondary {
+      background: var(--dark);
+      color: #fff;
+    }
+    .btn.secondary:hover {
+      background: #555;
+    }
+
+    /* Hero sectie */
+    #hero {
+      padding-top: 6rem; /* extra ruimte voor fixed header */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero .background-shapes {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 200%;
+      height: 100%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    /* Abstrakte patronen bestaande uit cirkels en lijnen */
+    #hero .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.15;
+    }
+    /* Verschillende groottes en posities voor de cirkels */
+    #hero .shape.circle1 { width: 300px; height: 300px; top: -50px; left: -100px; }
+    #hero .shape.circle2 { width: 200px; height: 200px; bottom: -80px; right: -50px; }
+    #hero .shape.circle3 { width: 150px; height: 150px; top: 40%; left: 60%; }
+    #hero .shape.circle4 { width: 250px; height: 250px; bottom: 10%; left: 30%; }
+
+    #hero h1 {
+      font-size: 2.75rem;
+    }
+    #hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Over ons sectie */
+    #about {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Voordelen sectie */
+    #benefits .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .benefit-card {
+      background: var(--bg);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 8px;
+      padding: 2rem 1rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    .benefit-card svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      fill: var(--primary);
+    }
+    .benefit-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    .benefit-card p {
+      font-size: 0.95rem;
+    }
+
+    /* Statistieken sectie */
+    #stats {
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      padding: 1.5rem;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .stat-item .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .stat-item .label {
+      font-size: 1rem;
+      color: var(--dark);
+    }
+
+    /* Bloeiende sector sectie */
+    #sector {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #sector p {
+      max-width: 700px;
+      margin: 0.5rem auto 1.5rem;
+    }
+
+    /* CTA blok */
+    #cta {
+      text-align: center;
+    }
+    #cta p {
+      margin-bottom: 2rem;
+    }
+
+    /* Contact sectie */
+    #contact {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    #contact textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    #contact button {
+      align-self: flex-start;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: #ffffff;
+      padding: 2rem 1rem;
+    }
+    footer .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    footer .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+    footer .footer-logo svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--primary);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive gedrag */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+      header .header-content {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <!-- Eenvoudige representatie van het Belgapom‑logo: een gele cirkel als aardappel en de naam -->
+      <div class="logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="50" rx="45" ry="35" />
+        </svg>
+        <span>Belgapom</span>
       </div>
-    </header>
-    
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Word lid van&nbsp;Belgapom</h1>
-        <p>
-          Sluit je aan bij de Belgische aardappelhandel en&nbsp;‑verwerking.
-          Profiteer van belangenbehartiging, kwaliteit &amp; voedselveiligheid,
-          opleidingen en een sterk netwerk.
-        </p>
-        <a href="#contact" class="cta-btn">Word lid</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero sectie -->
+    <section id="hero" class="alt-bg">
+      <div class="background-shapes">
+        <div class="shape circle1"></div>
+        <div class="shape circle2"></div>
+        <div class="shape circle3"></div>
+        <div class="shape circle4"></div>
+      </div>
+      <h1>Word lid van Belgapom</h1>
+      <p>Sluit je aan bij de Belgische aardappelhandel en –verwerking. Profiteer van belangenbehartiging, kwaliteit &amp; voedselveiligheid, opleidingen en een sterk netwerk.</p>
+      <a href="#contact" class="btn primary">Word lid</a>
+    </section>
+
+    <!-- Wie is Belgapom -->
+    <section id="about">
+      <h2>Wie is Belgapom?</h2>
+      <p>Belgapom is de erkende federatie voor de Belgische aardappelhandel en ‑verwerking. Als belangenorganisatie verdedigen we de belangen van handelaars, verwerkers, prepackers, exporteurs en pootaardappelproducenten op zowel Vlaams, Waals, federaal als Europees niveau.</p>
+      <p>Onze leden krijgen een stem in het beleid en toegang tot een uitgebreid netwerk via Europese koepels zoals EUROPATAT en EUPPA, maar ook binnen nationale organisaties zoals UNIZO en FEVIA. Zo versterken we samen de sector en vergroten we de slagkracht van onze bedrijven.</p>
+      <p>Naast lobbywerk investeren we in kennisdeling, kwaliteit en voedselveiligheid. We zetten ons in voor een duurzame en innovatieve aardappelketen waar elke schakel voordeel uit haalt.</p>
+    </section>
+
+    <!-- Voordelen sectie -->
+    <section id="benefits" class="alt-bg">
+      <h2>Voordelen van het lidmaatschap</h2>
+      <div class="benefit-grid">
+        <!-- Belangenbehartiging -->
+        <div class="benefit-card">
+          <!-- Megaphone icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24 v16 h12 l20 12 V12 L16 24 H4z" />
+            <rect x="4" y="24" width="6" height="16" rx="1" />
+          </svg>
+          <h3>Belangenbehartiging</h3>
+          <p>Vertegenwoordiging bij nationale en Europese overheden en beleidsorganen.</p>
+        </div>
+        <!-- Kwaliteit & voedselveiligheid -->
+        <div class="benefit-card">
+          <!-- Shield icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 4 L8 12 v18 c0 18 12 28 24 30 12-2 24-12 24-30 V12 L32 4z" />
+          </svg>
+          <h3>Kwaliteit &amp; voedselveiligheid</h3>
+          <p>Toegang tot de G014‑Gids voor Autocontrole, begeleiding bij certificering en korting op de FAVV‑heffing.</p>
+        </div>
+        <!-- Opleiding & netwerk -->
+        <div class="benefit-card">
+          <!-- Network icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="10" r="6" />
+            <circle cx="14" cy="34" r="6" />
+            <circle cx="50" cy="34" r="6" />
+            <line x1="32" y1="16" x2="14" y2="28" stroke-width="4" stroke="currentColor" fill="none" />
+            <line x1="32" y1="16" x2="50" y2="28" stroke-width="4" stroke="currentColor" fill="none" />
+            <line x1="14" y1="40" x2="50" y2="40" stroke-width="4" stroke="currentColor" fill="none" />
+          </svg>
+          <h3>Opleiding &amp; netwerk</h3>
+          <p>Trainingen over voedselveiligheid, duurzaamheid en wetgeving, plus seminars en beurzen.</p>
+        </div>
+        <!-- Import & export -->
+        <div class="benefit-card">
+          <!-- Arrows icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 18 L32 6 L44 18" />
+            <path d="M32 6 V42" />
+            <path d="M44 46 L32 58 L20 46" />
+            <path d="M32 22 V58" />
+          </svg>
+          <h3>Import &amp; export</h3>
+          <p>Ondersteuning bij fytosanitaire certificaten en markttoegang tot derde landen.</p>
+        </div>
+        <!-- Energie & kosten -->
+        <div class="benefit-card">
+          <!-- Lightning bolt icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="28,4 12,36 24,36 20,60 44,28 32,28 36,4" />
+          </svg>
+          <h3>Energie &amp; kosten</h3>
+          <p>Advies over energiecontracten en collectieve aankopen om kosten te besparen.</p>
+        </div>
+        <!-- Duurzaamheid & innovatie -->
+        <div class="benefit-card">
+          <!-- Leaf icon -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6 C20 12 12 24 12 36 s8 18 20 22 c14-4 20-14 20-22 S44 12 32 6z" />
+            <path d="M32 6 v52" stroke-width="3" stroke="currentColor" fill="none" />
+          </svg>
+          <h3>Duurzaamheid &amp; innovatie</h3>
+          <p>Deelname aan projecten rond circulariteit, watergebruik en CSRD.</p>
+        </div>
       </div>
     </section>
 
-    <main>
-      <!-- Wie zijn we -->
-      <section id="over" class="section grey fade-in">
-        <h2>Wie is Belgapom?</h2>
-        <p>
-          Belgapom is de erkende federatie voor de Belgische aardappelhandel en
-          -verwerking. De vereniging verdedigt de belangen van aardappelhandelaars,
-          prepackers, exporteurs, de schil‑ en verwerkingsindustrie en de
-          producenten en handelaars in pootaardappelen.
-        </p>
-        <p>
-          Onze raad van bestuur en het voltijdse secretariaat geven de sector een
-          stem bij de Vlaamse, Waalse en federale overheden en op Europees
-          niveau. Belgapom is lid van EUROPATAT, EUPPA, UNIZO en FEVIA, zodat
-          leden toegang hebben tot een uitgebreid netwerk en actuele sectorinfo.
-        </p>
-      </section>
-
-      <!-- Voordelen -->
-      <section id="voordelen" class="section light fade-in">
-        <h2>Voordelen van het lidmaatschap</h2>
-        <div class="benefits-grid">
-          <div class="benefit">
-            <i class="fa-solid fa-handshake"></i>
-            <div>
-              <h3>Belangenbehartiging</h3>
-              <p>
-                Vertegenwoordiging bij nationale en Europese overheden en
-                beleidsorganen. Wij verdedigen uw belangen als handelaar of
-                verwerker en houden u op de hoogte van wetgeving en sectorale
-                ontwikkelingen.
-              </p>
-            </div>
-          </div>
-          <div class="benefit">
-            <i class="fa-solid fa-clipboard-check"></i>
-            <div>
-              <h3>Kwaliteit &amp; Voedselveiligheid</h3>
-              <p>
-                Toegang tot de Gids voor Autocontrole (G014) en begeleiding
-                bij certificering. Een gevalideerd autocontrolesysteem levert
-                bovendien een aanzienlijke korting op de FAVV‑heffing op.
-              </p>
-            </div>
-          </div>
-          <div class="benefit">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div>
-              <h3>Opleiding &amp; Netwerk</h3>
-              <p>
-                Regelmatige trainingen over voedselveiligheid, duurzaamheid en
-                wetgeving. Ontmoet collega‑ondernemers tijdens seminars,
-                beurzen en ledenactiviteiten.
-              </p>
-            </div>
-          </div>
-          <div class="benefit">
-            <i class="fa-solid fa-plane"></i>
-            <div>
-              <h3>Import &amp; Export</h3>
-              <p>
-                Praktische ondersteuning bij import‑ en exportvereisten,
-                fytosanitaire certificaten en markttoegang naar derde landen.
-                Wij onderhouden contacten met de bevoegde instanties.
-              </p>
-            </div>
-          </div>
-          <div class="benefit">
-            <i class="fa-solid fa-bolt"></i>
-            <div>
-              <h3>Energie &amp; Kosten</h3>
-              <p>
-                Advies over energiecontracten en collectieve aankopen. Bespaar op uw
-                vaste kosten dankzij onderhandelingen via Belgapom en onze partners.
-              </p>
-            </div>
-          </div>
-          <div class="benefit">
-            <i class="fa-solid fa-leaf"></i>
-            <div>
-              <h3>Duurzaamheid &amp; Innovatie</h3>
-              <p>
-                Deelname aan projecten rond circulariteit, watergebruik en
-                duurzaamheidsrapportering (CSRD). Wij helpen u de
-                regelgeving in de praktijk toe te passen.
-              </p>
-            </div>
-          </div>
+    <!-- Kerncijfers sectie -->
+    <section id="stats">
+      <h2>Kerncijfers</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="number" data-target="80">0</div>
+          <div class="label">leden</div>
         </div>
-      </section>
-
-      <!-- Statistieken -->
-      <section id="stats" class="section stats-section grey fade-in">
-        <h2>Kerncijfers</h2>
-        <div class="stats-grid">
-          <div class="stat">
-            <i class="fa-solid fa-users"></i>
-            <span class="number" data-target="80">0</span>
-            <p>Leden</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-people-group"></i>
-            <span class="number" data-target="7500">0</span>
-            <p>Tewerkstelling</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-boxes-stacked"></i>
-            <span class="number" data-target="6.2">0</span>
-            <p>Miljoen ton verwerkt</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-chart-line"></i>
-            <span class="number" data-target="618">0</span>
-            <p>Miljoen € investeringen</p>
-          </div>
+        <div class="stat-item">
+          <div class="number" data-target="7500">0</div>
+          <div class="label">werknemers in de sector</div>
         </div>
-      </section>
-
-      <!-- Sector promotie -->
-      <section id="sector" class="section sector-section light fade-in">
-        <div class="sector-content">
-          <div class="sector-text">
-            <h2>Een bloeiende sector</h2>
-            <p>
-              België staat wereldwijd bekend om zijn aardappelen en
-              aardappelproducten. Met meer dan 6,2&nbsp;miljoen ton
-              aardappelen verwerkt per jaar en een exportgraad van 84&nbsp;%
-              behoort onze sector tot de absolute top. Bedrijven investeren
-              jaarlijks honderden miljoenen euro’s in innovatie,
-              duurzaamheid en groei, zodat de Belgische aardappelketen
-              toekomstbestendig blijft.
-            </p>
-            <p>
-              Als lid van Belgapom bouwt u mee aan deze bloeiende sector,
-              krijgt u toegang tot expertise en netwerkmogelijkheden en
-              versterkt u de stem van de aardappelindustrie in België en
-              ver daarbuiten.
-            </p>
-            <a href="#contact" class="cta-btn">Doe mee</a>
-          </div>
-          <!-- Geen afbeelding – focus op tekst en call-to-action -->
+        <div class="stat-item">
+          <div class="number" data-target="6.2">0</div>
+          <div class="label">miljoen ton aardappelen per jaar</div>
         </div>
-      </section>
+        <div class="stat-item">
+          <div class="number" data-target="618">0</div>
+          <div class="label">miljoen euro aan investeringen</div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Een bloeiende sector -->
+    <section id="sector" class="alt-bg">
+      <h2>Een bloeiende sector</h2>
+      <p>België verwerkt jaarlijks meer dan 6,2&nbsp;miljoen ton aardappelen en exporteert 84&nbsp;% van zijn productie. Onze bedrijven investeren voortdurend in innovatie en duurzaamheid om koploper te blijven in de wereldwijde aardappelindustrie.</p>
+      <p>Van hypermoderne verwerkingslijnen tot circulaire projecten rond water en reststromen – de sector is klaar voor de uitdagingen van morgen.</p>
+      <a href="#contact" class="btn primary">Doe mee</a>
+    </section>
 
-      <!-- Call to action -->
-      <section id="call-to-action" class="section grey call-to-action fade-in">
-        <h2>Klaar om lid te worden?</h2>
-        <p>
-          Bent u actief in de aardappelhandel of -verwerking en wilt u profiteren
-          van de voordelen van Belgapom? Neem dan contact op via onderstaand
-          formulier of stuur een e‑mail naar het secretariaat. We nemen zo
-          snel mogelijk contact met u op om uw lidmaatschap te bespreken.
-        </p>
-        <a href="#contact" class="cta-btn">Neem contact op</a>
-      </section>
+    <!-- Extra call‑to‑action -->
+    <section id="cta">
+      <h2>Klaar om lid te worden?</h2>
+      <p>Wacht niet langer en ontdek hoe Belgapom jouw onderneming kan versterken. Neem vandaag nog contact met ons op.</p>
+      <a href="#contact" class="btn secondary">Neem contact op</a>
+    </section>
 
-      <!-- Contact -->
-      <section id="contact" class="section light fade-in">
-        <h2>Contacteer ons</h2>
-        <p>
-          Vul het formulier in of stuur een e‑mail naar
-          <a href="mailto:info@belgapom.be">info@belgapom.be</a> om lid te
-          worden of meer informatie te ontvangen.
-        </p>
-        <form class="contact-form" action="#" method="post" onsubmit="return false;">
-          <label for="name">Naam</label>
-          <input type="text" id="name" name="name" placeholder="Uw naam" required />
-          <label for="company">Bedrijf</label>
-          <input type="text" id="company" name="company" placeholder="Bedrijfsnaam" required />
-          <label for="email">E‑mail</label>
-          <input type="email" id="email" name="email" placeholder="Uw e‑mail" required />
-          <label for="message">Bericht</label>
-          <textarea id="message" name="message" rows="4" placeholder="Uw vraag"></textarea>
-          <button type="submit" class="cta-btn">Verstuur</button>
-        </form>
-      </section>
-    </main>
+    <!-- Contactformulier -->
+    <section id="contact" class="alt-bg">
+      <h2>Contacteer ons</h2>
+      <p>Vul het formulier in en wij nemen zo snel mogelijk contact met je op. Liever direct e‑mailen? Mail naar <a href="mailto:info@belgapom.be">info@belgapom.be</a>.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault(); alert('Bedankt voor je bericht!'); this.reset();">
+        <input type="text" name="naam" placeholder="Naam" required>
+        <input type="text" name="bedrijf" placeholder="Bedrijf" required>
+        <input type="email" name="email" placeholder="E‑mail" required>
+        <textarea name="bericht" placeholder="Bericht" required></textarea>
+        <button type="submit" class="btn primary">Verstuur</button>
+      </form>
+    </section>
+  </main>
 
-    <footer class="footer">
-      <p>
-        © <span id="year"></span> Belgapom • Guldensporenpark 120, 9820 Merelbeke •
-        <a href="mailto:info@belgapom.be">info@belgapom.be</a>
-      </p>
-    </footer>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="50" rx="45" ry="35" />
+        </svg>
+        <span>Belgapom</span>
+      </div>
+      <div>Guldensporenpark 120, 9820 Merelbeke, België</div>
+      <div>Contact: <a href="mailto:info@belgapom.be">info@belgapom.be</a></div>
+      <div>© 2025 Belgapom – alle rechten voorbehouden</div>
+    </div>
+  </footer>
 
-    <script>
-      // Dynamisch jaar weergeven in footer
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      // Functie om de statistieken vloeiend op te tellen
-      function animateCounter(counter) {
-        const target = parseFloat(counter.dataset.target);
-        const isInteger = Number.isInteger(target);
-        const increment = target / 200; // snelheid: hoe hoger hoe sneller
-        let current = 0;
-        function update() {
-          if (current < target) {
-            current += increment;
-            counter.textContent = isInteger
-              ? Math.floor(current)
-              : current.toFixed(1);
-            requestAnimationFrame(update);
-          } else {
-            counter.textContent = isInteger
-              ? target.toString()
-              : target.toFixed(1);
+  <script>
+    // Fade‑in animaties voor secties
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
-        }
-        update();
-      }
-
-      // IntersectionObserver om fade‑in en counters te activeren wanneer secties in beeld komen
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('show');
-              // Start animatie van tellers wanneer stats‑sectie zichtbaar is
-              if (entry.target.id === 'stats') {
-                document.querySelectorAll('.number').forEach((num) => animateCounter(num));
-              }
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      document.querySelectorAll('.section.fade-in').forEach((section) => {
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
       });
-    </script>
-  </body>
+
+      // Animerende counters
+      const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.number');
+            counters.forEach(counter => animateCounter(counter));
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      const statsSection = document.getElementById('stats');
+      statObserver.observe(statsSection);
+
+      function animateCounter(el) {
+        const target = parseFloat(el.dataset.target);
+        // Voor waarden met decimalen (miljoenen) tonen we één decimaal
+        if (el.nextElementSibling && el.nextElementSibling.textContent.includes('miljoen')) {
+          let current = 0;
+          const step = target / 100;
+          const decimals = target % 1 !== 0 ? 1 : 0;
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+            }
+            el.textContent = current.toFixed(decimals);
+          }, 20);
+        } else {
+          // Voor gehele waarden
+          let current = 0;
+          const increment = Math.ceil(target / 100);
+          const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+            }
+            el.textContent = current.toLocaleString('nl-BE');
+          }, 20);
+        }
+      }
+    });
+  </script>
+</body>
 </html>
