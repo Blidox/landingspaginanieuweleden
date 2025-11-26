@@ -36,7 +36,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,7 +50,7 @@
             align-items: center;
         }
         .logo img {
-            height: 40px;
+            height: 60px; /* GROTER LOGO */
             width: auto;
             margin-right: 12px;
         }
@@ -93,7 +93,6 @@
             object-fit: cover;
             z-index: 0;
         }
-        /* Donkere overlay voor leesbaarheid tekst */
         .hero-video-overlay {
             position: absolute;
             inset: 0;
@@ -160,27 +159,25 @@
         }
 
         section {
-            padding: 80px 20px;
+            padding: 70px 20px; /* iets compacter */
             position: relative;
         }
 
-        section:nth-of-type(even) .container {
-            background-color: #F7F7F7;
-        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            padding: 20px;
+            padding: 30px 20px;
             border-radius: 30px;
             background: #FFFFFF;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             border: 1px solid #EFE8D8;
         }
+
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             text-align: center;
             color: #333333;
             position: relative;
@@ -247,8 +244,8 @@
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover; /* NIEUW */
-            object-position: center; /* NIEUW */
+            object-fit: cover;
+            object-position: center;
         }
         .video-text {
             flex: 1;
@@ -326,46 +323,6 @@
             color: #333333;
         }
 
-        /* Sector section */
-        .sector {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-        }
-        .sector-text {
-            flex: 1;
-            min-width: 280px;
-        }
-        .sector-text h3 {
-            font-size: 1.5rem;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        .sector-text p {
-            margin-bottom: 15px;
-            color: #333333;
-        }
-        .sector-cta {
-            margin-top: 20px;
-        }
-        .sector-cta button {
-            padding: 12px 30px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 6px;
-            color: #333333;
-            background: #FFCA00;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-        .sector-cta button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-            background: #e0b000;
-        }
-
         /* Contact section */
         .contact-grid {
             display: flex;
@@ -428,21 +385,22 @@
 
         /* Footer */
         footer {
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: #F8F4EA;
             text-align: center;
             color: #5A5A5A;
             font-size: 0.85rem;
             border-top: 1px solid #EDE3C5;
+            margin-top: 20px;
         }
         footer .footer-logo {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         footer .footer-logo img {
-            height: 30px;
+            height: 36px;
             width: auto;
             margin-right: 10px;
         }
@@ -456,11 +414,12 @@
             header {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 12px 20px;
             }
             nav ul {
                 flex-wrap: wrap;
                 gap: 10px;
-                margin-top: 10px;
+                margin-top: 8px;
             }
             .hero-video {
                 padding-top: 90px; /* hoogte header op mobiel */
@@ -473,6 +432,9 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+            .container {
+                padding: 20px 16px;
+            }
         }
     </style>
 </head>
@@ -480,8 +442,7 @@
     <header>
         <div class="logo">
             <a href="https://belgapom.be" target="_blank" rel="noopener">
-                <!-- Plaats hier je eigen base64-logo of pad naar logo -->
-                <img src="images/logo.png.png" />
+                <img src="images/logo.png.png" alt="Belgapom logo" />
             </a>
         </div>
         <nav>
@@ -490,8 +451,7 @@
                 <li><a href="#video">Video</a></li>
                 <li><a href="#benefits">Voordelen</a></li>
                 <li><a href="#stats">Kerncijfers</a></li>
-                <li><a href="#sector">Sector</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li> <!-- sector verwijderd -->
             </ul>
         </nav>
     </header>
@@ -499,9 +459,7 @@
     <!-- HERO MET VIDEO -->
     <section class="hero-video" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline poster="images/belgapom_poster.jpg">
-            <!-- Vervang dit pad door je eigen videobestand -->
             <source src="videos/belgapom_hero.mp4" type="video/mp4">
-            Je browser ondersteunt geen HTML5 video.
         </video>
 
         <div class="hero-video-overlay"></div>
@@ -541,7 +499,6 @@
             <h2 class="section-title">Ontdek Belgapom in beeld</h2>
             <div class="video-grid">
                 <div class="video-wrapper">
-                    <!-- Vervang VIDEO_ID door de ID of URL van je eigen bedrijfsvideo -->
                     <iframe src="https://www.youtube.com/embed/bfhS5u-BCNU?rel=0&showinfo=0&modestbranding=1"
                             title="Bedrijfsvideo Belgapom"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -610,8 +567,8 @@
                     <p>Leden Belgapom</p>
                 </div>
                 <div class="stat">
-                    <h3>7&nbsp;500</h3>
-                    <p>Jobs in handel en verwerking</p>
+                    <h3>6&nbsp;300</h3>
+                    <p>Werknemers in handel en verwerking</p>
                 </div>
                 <div class="stat">
                     <h3>6,2&nbsp;milj.</h3>
@@ -622,26 +579,9 @@
                     <p>Euro investeringen in 2023</p>
                 </div>
             </div>
-            <p style="margin-top:30px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto;">
-                In Vlaanderen bedraagt het aardappelareaal <strong>50&nbsp;753 ha</strong>, in Wallonië <strong>42&nbsp;000 ha</strong>. België exporteert ongeveer <strong>84&nbsp;%</strong> van zijn diepvriesfrieten – een echte wereldspeler dus.
+            <p style="margin-top:26px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto;">
+                In Vlaanderen bedraagt het aardappelareaal <strong>50&nbsp;753 ha</strong>, in Wallonië <strong>42&nbsp;000 ha</strong>. België exporteert ongeveer <strong>90&nbsp;%</strong> van zijn diepvriesfrieten – een echte wereldspeler dus.
             </p>
-        </div>
-    </section>
-
-    <section id="sector">
-        <div class="container">
-            <h2 class="section-title">Een bloeiende sector</h2>
-            <div class="sector">
-                <div class="sector-text">
-                    <h3>België is wereldtop in aardappelverwerking</h3>
-                    <p>Met meer dan <strong>6,2 miljoen ton</strong> verwerkte aardappelen per jaar en een export van <strong>84&nbsp;%</strong> van de diepvriesproducten behoort België tot de wereldtop in de aardappelverwerking.</p>
-                    <p>De sector stelt ruim <strong>7&nbsp;500 mensen</strong> tewerk en investeerde in 2023 maar liefst <strong>618 miljoen euro</strong> in vernieuwing, verduurzaming en groei. Van teelt tot verhandeling en verwerking is de aardappelketen een belangrijke motor voor de Belgische economie.</p>
-                    <p>Als lid van Belgapom maak je deel uit van dit verhaal. Je krijgt toegang tot kennis, netwerk en ondersteuning om toekomstgerichte keuzes te maken in een snel veranderende context van regelgeving, duurzaamheidseisen en internationale concurrentie.</p>
-                    <div class="sector-cta">
-                        <button onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });">Neem contact op</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -671,7 +611,7 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="images/logo.png.png" />
+            <img src="images/logo.png.png" alt="Belgapom logo" />
         </div>
         <p>&copy; 2023 Belgapom – Belgische federatie voor aardappelhandel en -verwerking.</p>
         <p><a href="https://belgapom.be" target="_blank" rel="noopener">Bezoek onze hoofdwebsite</a></p>
