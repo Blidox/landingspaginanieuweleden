@@ -73,33 +73,74 @@
             border-bottom: 2px solid #FFCA00;
         }
 
-        /* Hero section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+        /* HERO – VIDEO BACKGROUND */
+        .hero-video {
             position: relative;
-            background: url('hero_bg.png') center/cover no-repeat;
-            color: #333333;
+            height: 100vh;
+            min-height: 520px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            color: #ffffff;
         }
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 20px;
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        /* Donkere overlay voor leesbaarheid tekst */
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 202, 0, 0.15), transparent 55%),
+                        linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            text-align: left;
+        }
+        .hero-kicker {
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #333333;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #FFCA00;
+            margin-bottom: 10px;
         }
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin-bottom: 30px;
-            color: #555555;
+        .hero-content h1 {
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            line-height: 1.1;
+            margin-bottom: 18px;
         }
+        .hero-subtitle {
+            font-size: 1.05rem;
+            max-width: 580px;
+            color: #f2f2f2;
+            margin-bottom: 26px;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+        .hero-secondary-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* CTA button (reuse) */
         .cta-btn {
             padding: 15px 40px;
             font-size: 1rem;
@@ -419,11 +460,16 @@
                 gap: 10px;
                 margin-top: 10px;
             }
-            .hero {
-                padding-top: 100px;
+            .hero-video {
+                padding-top: 90px; /* hoogte header op mobiel */
+                align-items: flex-start;
             }
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-content {
+                text-align: left;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -432,8 +478,8 @@
     <header>
         <div class="logo">
             <a href="https://belgapom.be" target="_blank" rel="noopener">
-                <!-- Inline base64 logo voor snelle loading -->
-                <img src="data:image/png;base64,<!-- logo base64 hier (ongewijzigd) -->" alt="Belgapom logo" />
+                <!-- Plaats hier je eigen base64-logo of pad naar logo -->
+                <img src="logo_belgapom.png" alt="Belgapom logo" />
             </a>
         </div>
         <nav>
@@ -447,13 +493,30 @@
             </ul>
         </nav>
     </header>
-    
-    <section class="hero" id="home">
-        <h1>Word lid van Belgapom</h1>
-        <p>Belgapom is de erkende federatie van de Belgische aardappelhandel en -verwerking. We vertegenwoordigen de sector die België tot wereldleider maakt in de verwerking van aardappelen tot diepvriesproducten en verse friet.</p>
-        <a href="#contact"><button class="cta-btn">Doe mee</button></a>
+
+    <!-- HERO MET VIDEO -->
+    <section class="hero-video" id="home">
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="images/belgapom_poster.jpg">
+            <!-- Vervang dit pad door je eigen videobestand -->
+            <source src="videos/belgapom_hero.mp4" type="video/mp4">
+            Je browser ondersteunt geen HTML5 video.
+        </video>
+
+        <div class="hero-video-overlay"></div>
+
+        <div class="hero-content">
+            <p class="hero-kicker">Belgische aardappelhandel &amp; -verwerking</p>
+            <h1>De federatie achter de wereldleider in friet en aardappelproducten</h1>
+            <p class="hero-subtitle">
+                Belgapom verenigt handelaars, verpakkers en verwerkers en verdedigt hun belangen in België en ver daarbuiten.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact"><button class="cta-btn">Word lid</button></a>
+                <a href="#video" class="hero-secondary-link">Bekijk de bedrijfsvideo</a>
+            </div>
+        </div>
     </section>
-    
+
     <section id="about">
         <div class="container">
             <h2 class="section-title">Wie is Belgapom?</h2>
@@ -497,7 +560,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="benefits">
         <div class="container">
             <h2 class="section-title">Voordelen van het lidmaatschap</h2>
@@ -535,7 +598,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="stats">
         <div class="container">
             <h2 class="section-title">Kerncijfers Belgische aardappelsector (2023)</h2>
@@ -606,7 +669,7 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="data:image/png;base64,<!-- logo base64 hier (ongewijzigd) -->" alt="Belgapom logo" />
+            <img src="logo_belgapom_small.png" alt="Belgapom logo" />
         </div>
         <p>&copy; 2023 Belgapom – Belgische federatie voor aardappelhandel en -verwerking.</p>
         <p><a href="https://belgapom.be" target="_blank" rel="noopener">Bezoek onze hoofdwebsite</a></p>
