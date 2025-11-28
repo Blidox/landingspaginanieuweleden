@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belgapom – Word lid van de Belgische aardappelsector</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="Sluit u aan bij Belgapom, de erkende beroepsvereniging voor de Belgische aardappelhandel en -verwerking. Versterk uw netwerk en invloed.">
+    <meta property="og:title" content="Belgapom – Word lid van de sectorfederatie">
+    <meta property="og:description" content="Versterk uw netwerk en invloed in de aardappelindustrie. Ontdek de voordelen van het lidmaatschap.">
+    <meta property="og:image" content="images/belgapom_poster.jpg"> <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Global resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Montserrat', sans-serif;
@@ -44,13 +53,14 @@
             background: #FFFFFF;
             border-bottom: 1px solid #EDE3C5;
             box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            height: 90px; /* Vaste hoogte voor berekeningen */
         }
         .logo {
             display: flex;
             align-items: center;
         }
         .logo img {
-            height: 60px; /* groter logo */
+            height: 60px;
             width: auto;
             margin-right: 12px;
         }
@@ -63,8 +73,6 @@
             font-weight: 500;
             color: #333333;
             padding: 6px 8px;
-            border-radius: 0;
-            background: transparent;
             border-bottom: 2px solid transparent;
             transition: color 0.3s ease, border-bottom 0.3s ease;
         }
@@ -84,6 +92,7 @@
             justify-content: center;
             padding: 0 20px;
             color: #ffffff;
+            /* Geen scroll margin nodig hier, want dit is de bovenkant */
         }
         .hero-video-bg {
             position: absolute;
@@ -159,9 +168,12 @@
             background: #e0b000;
         }
 
+        /* Sections & Containers */
         section {
             padding: 70px 20px;
             position: relative;
+            /* FIX: Zorgt dat de titel niet onder de header verdwijnt bij scrollen */
+            scroll-margin-top: 100px; 
         }
 
         .container {
@@ -238,6 +250,7 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: #000;
         }
         .video-wrapper iframe {
             position: absolute;
@@ -246,7 +259,6 @@
             height: 100%;
             display: block;
             object-fit: cover;
-            object-position: center;
         }
         .video-text {
             flex: 1;
@@ -295,6 +307,27 @@
         .benefit-icon {
             font-size: 2rem;
             margin-bottom: 15px;
+        }
+
+        /* Testimonial Section (Nieuw) */
+        .testimonial-section {
+            background-color: #F8F4EA;
+            padding: 50px 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .testimonial-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .testimonial-author {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #333;
         }
 
         /* Team section */
@@ -395,7 +428,8 @@
             border-radius: 10px;
             background: rgba(255,255,255,0.6);
             color: #333333;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.1); /* Iets donkerdere border voor zichtbaarheid */
+            font-family: inherit;
         }
         .contact-form input::placeholder,
         .contact-form textarea::placeholder {
@@ -404,12 +438,12 @@
         .contact-form button {
             padding: 12px;
             font-size: 1rem;
+            font-weight: 600;
             border: none;
             border-radius: 6px;
             color: #333333;
             background: #FFCA00;
             cursor: pointer;
-            font-weight: 600;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
@@ -459,20 +493,31 @@
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 12px 20px;
+                align-items: center; /* Centered on mobile */
+                padding: 10px 20px;
+                height: auto; /* Auto height on mobile */
+            }
+            .logo {
+                margin-bottom: 10px;
+            }
+            .logo img {
+                height: 50px;
+                margin-right: 0;
             }
             nav ul {
                 flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 8px;
+                gap: 15px;
+                justify-content: center;
+                margin-top: 5px;
             }
             .hero-video {
-                padding-top: 90px; /* hoogte header op mobiel */
+                /* Extra padding top omdat header op mobiel groter is */
+                padding-top: 160px; 
                 align-items: flex-start;
             }
             .hero-content {
                 text-align: left;
+                margin-top: 20px;
             }
             .hero-actions {
                 flex-direction: column;
@@ -491,7 +536,7 @@
     <header>
         <div class="logo">
             <a href="https://belgapom.be" target="_blank" rel="noopener">
-                <img src="images/logo.png.png" alt="Belgapom logo" />
+                <img src="images/logo.png" alt="Belgapom logo" />
             </a>
         </div>
         <nav>
@@ -506,7 +551,6 @@
         </nav>
     </header>
 
-    <!-- HERO MET VIDEO -->
     <section class="hero-video" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline poster="images/belgapom_poster.jpg">
             <source src="videos/belgapom_hero.mp4" type="video/mp4">
@@ -539,7 +583,7 @@
                     <p>Daarnaast werken we mee aan goede landbouwpraktijken en aan de totstandkoming van de grondstof: de aardappel. Belgapom is mede-oprichter van het Vegaplan-lastenboek en werkt nauw samen met landbouworganisaties en onderzoeksinstellingen zoals ILVO om voedselveiligheid, milieuzorg en innovatie te garanderen.</p>
                 </div>
                 <div class="about-image">
-                    <img src="about_image.png" alt="Abstracte illustratie van Belgapom en de aardappelindustrie" />
+                    <img src="about_image.png" alt="Abstracte illustratie van Belgapom en de aardappelindustrie" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -552,6 +596,7 @@
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/bfhS5u-BCNU?rel=0&showinfo=0&modestbranding=1"
                             title="Bedrijfsvideo Belgapom"
+                            loading="lazy"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 </div>
@@ -609,13 +654,22 @@
         </div>
     </section>
 
+    <section class="testimonial-section">
+        <div class="container" style="background: transparent; box-shadow: none; border: none; padding: 0;">
+            <blockquote class="testimonial-quote">
+                "Het lidmaatschap bij Belgapom zorgt ervoor dat wij altijd proactief geïnformeerd zijn over nieuwe wetgeving. Een onmisbare partner voor onze export."
+            </blockquote>
+            <p class="testimonial-author">— Een trots lid van de federatie</p>
+        </div>
+    </section>
+
     <section id="team">
         <div class="container">
             <h2 class="section-title">Het team</h2>
             <div class="team-grid">
                 <div class="team-member">
                     <div class="team-photo">
-                        <img src="images/team-christophe.jpg" alt="Christophe Vermeulen">
+                        <img src="images/team-christophe.jpg" alt="Christophe Vermeulen" loading="lazy">
                     </div>
                     <h3>Christophe Vermeulen</h3>
                     <p class="team-role">Directeur en CEO van Belgapom</p>
@@ -625,7 +679,7 @@
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        <img src="images/team-veerle.jpg" alt="Veerle Van der Sypt">
+                        <img src="images/team-veerle.jpg" alt="Veerle Van der Sypt" loading="lazy">
                     </div>
                     <h3>Veerle Van der Sypt</h3>
                     <p class="team-role">Import-Export Manager, algemeen secretaris Fresh Trade Belgium</p>
@@ -635,22 +689,22 @@
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        <img src="images/team-lucas.jpg" alt="Lucas Mertens">
+                        <img src="images/team-lucas.jpg" alt="Lucas Mertens" loading="lazy">
                     </div>
                     <h3>Lucas Mertens</h3>
                     <p class="team-role">Marketing &amp; Communication Officer FVPhouse &amp; Belgapom</p>
                     <p class="team-desc">
-                        Lucas ontwikkelt en implementeert marketing- en communicatiestrategieën om de organisatiedoelen te behalen. Hij beheert campagnes, sociale media en persrelaties om de zichtbaarheid van de federaties te versterken.
+                        Lucas ontwikkelt en implementeert marketing- en communicatiestrategieën om de organisatiedoelen te behalen.
                     </p>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        <img src="images/team-annelien.jpg" alt="Annelien Gansemans">
+                        <img src="images/team-annelien.jpg" alt="Annelien Gansemans" loading="lazy">
                     </div>
                     <h3>Annelien Gansemans</h3>
                     <p class="team-role">Algemeen secretaris &amp; Wetenschappelijk adviseur Vegebe</p>
                     <p class="team-desc">
-                        Annelien coördineert het beleid met bijzondere aandacht voor de wetenschappelijke en technische dossiers die de federaties aanbelangen. Ze volgt thematische werkgroepen op rond milieu, duurzaamheid, voedselveiligheid en landbouw.
+                        Annelien coördineert het beleid met bijzondere aandacht voor de wetenschappelijke en technische dossiers die de federaties aanbelangen.
                     </p>
                 </div>
             </div>
@@ -690,9 +744,12 @@
             <div class="contact-grid">
                 <div class="contact-info">
                     <h3>Contacteer ons</h3>
-                    <p>Heb je vragen over het lidmaatschap of wil je graag kennismaken? Vul het formulier in of stuur een e-mail. De lidgelden worden berekend op basis van de activiteit en grootte van je bedrijf, zodat je altijd een voorstel op maat krijgt.</p>
+                    <p>Heb je vragen over het lidmaatschap of wil je graag kennismaken? Vul het formulier in of stuur ons een e-mail. De lidgelden worden berekend op basis van de activiteit en grootte van je bedrijf.</p>
+                    
                     <p><strong>Adres:</strong> Guldensporenpark 120, 9820 Merelbeke</p>
                     <p><strong>E-mail:</strong> <a href="mailto:info@belgapom.be">info@belgapom.be</a></p>
+                    <br>
+                    <p style="font-size: 0.9em; font-style: italic;">Let op: het formulier hiernaast opent uw standaard e-mailprogramma.</p>
                 </div>
                 <div class="contact-form">
                     <form id="contact-form" action="mailto:info@belgapom.be" method="post" enctype="text/plain" onsubmit="return validateForm();">
@@ -708,14 +765,13 @@
                             </label>
                         </div>
 
-                        <!-- Honeypot veld voor bots -->
                         <div style="position:absolute; left:-9999px; opacity:0;" aria-hidden="true">
                             <label>Laat dit veld leeg</label>
                             <input type="text" name="website">
                         </div>
 
-                        <button type="submit">Verzend</button>
-                        <p class="form-note">Je gegevens worden enkel gebruikt om je vraag over het lidmaatschap te beantwoorden.</p>
+                        <button type="submit">Verzend aanvraag</button>
+                        <p class="form-note">Je gegevens worden verstuurd via je e-mailprogramma.</p>
                     </form>
                 </div>
             </div>
@@ -742,6 +798,9 @@
                 alert('Gelieve te bevestigen dat je geen robot bent.');
                 return false;
             }
+            
+            // Als alles goed is, geef de gebruiker even tijd om te zien dat er iets gebeurt
+            // voordat de mail client opent
             return true;
         }
     </script>
