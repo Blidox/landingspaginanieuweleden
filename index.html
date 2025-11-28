@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belgapom – Word lid van de Belgische aardappelsector</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Global resets */
         * {
@@ -50,7 +50,7 @@
             align-items: center;
         }
         .logo img {
-            height: 60px; /* GROTER LOGO */
+            height: 60px; /* groter logo */
             width: auto;
             margin-right: 12px;
         }
@@ -96,8 +96,9 @@
         .hero-video-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(255, 202, 0, 0.15), transparent 55%),
-                        linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 202, 0, 0.15), transparent 55%),
+                linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
             z-index: 1;
         }
         .hero-content {
@@ -159,7 +160,7 @@
         }
 
         section {
-            padding: 70px 20px; /* iets compacter */
+            padding: 70px 20px;
             position: relative;
         }
 
@@ -296,6 +297,46 @@
             margin-bottom: 15px;
         }
 
+        /* Team section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .team-member {
+            text-align: center;
+            padding: 20px 15px;
+        }
+        .team-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid #FFCA00;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-member h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: #333333;
+        }
+        .team-role {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d2d44;
+            margin-bottom: 8px;
+        }
+        .team-desc {
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
         /* Stats section */
         .stats {
             display: flex;
@@ -321,6 +362,31 @@
         .stat p {
             font-size: 0.9rem;
             color: #333333;
+        }
+
+        /* Membership fee info */
+        .membership-fee {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #EFE8D8;
+        }
+        .membership-fee h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .membership-fee p {
+            max-width: 800px;
+            margin: 0 auto 10px;
+            text-align: center;
+        }
+        .membership-fee ul {
+            max-width: 800px;
+            margin: 10px auto 0;
+            padding-left: 18px;
+        }
+        .membership-fee li {
+            margin-bottom: 6px;
         }
 
         /* Contact section */
@@ -379,8 +445,18 @@
         }
         .form-note {
             font-size: 0.85rem;
-            color: #ccc;
-            margin-top: 10px;
+            color: #999999;
+            margin-top: 4px;
+        }
+        .antispam-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: #333333;
+        }
+        .antispam-wrapper label {
+            font-weight: 500;
         }
 
         /* Footer */
@@ -393,16 +469,8 @@
             border-top: 1px solid #EDE3C5;
             margin-top: 20px;
         }
-        footer .footer-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        footer .footer-logo img {
-            height: 36px;
-            width: auto;
-            margin-right: 10px;
+        footer p {
+            margin-bottom: 6px;
         }
         footer a {
             color: #FFB800;
@@ -435,6 +503,9 @@
             .container {
                 padding: 20px 16px;
             }
+            .stats {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -450,8 +521,9 @@
                 <li><a href="#about">Over ons</a></li>
                 <li><a href="#video">Video</a></li>
                 <li><a href="#benefits">Voordelen</a></li>
+                <li><a href="#team">Het team</a></li>
                 <li><a href="#stats">Kerncijfers</a></li>
-                <li><a href="#contact">Contact</a></li> <!-- sector verwijderd -->
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -460,6 +532,7 @@
     <section class="hero-video" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline poster="images/belgapom_poster.jpg">
             <source src="videos/belgapom_hero.mp4" type="video/mp4">
+            Je browser ondersteunt geen HTML5-video.
         </video>
 
         <div class="hero-video-overlay"></div>
@@ -558,6 +631,54 @@
         </div>
     </section>
 
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Het team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team-christophe.jpg" alt="Christophe Vermeulen">
+                    </div>
+                    <h3>Christophe Vermeulen</h3>
+                    <p class="team-role">Directeur en CEO van Belgapom</p>
+                    <p class="team-desc">
+                        Christophe volgt binnen FVPhouse de economische en sociale dossiers op, en onderhoudt de contacten met de landbouwdossiers. Hij verzekert ook de public relations.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team-veerle.jpg" alt="Veerle Van der Sypt">
+                    </div>
+                    <h3>Veerle Van der Sypt</h3>
+                    <p class="team-role">Import-Export Manager, algemeen secretaris Fresh Trade Belgium</p>
+                    <p class="team-desc">
+                        Veerle volgt binnen FVPhouse alle dossiers m.b.t. in- en uitvoer op.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team-lucas.jpg" alt="Lucas Mertens">
+                    </div>
+                    <h3>Lucas Mertens</h3>
+                    <p class="team-role">Marketing &amp; Communication Officer FVPhouse &amp; Belgapom</p>
+                    <p class="team-desc">
+                        Lucas ontwikkelt en implementeert marketing- en communicatiestrategieën om de organisatiedoelen te behalen. Hij beheert campagnes, sociale media en persrelaties om de zichtbaarheid van de federaties te versterken.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team-annelien.jpg" alt="Annelien Gansemans">
+                    </div>
+                    <h3>Annelien Gansemans</h3>
+                    <p class="team-role">Algemeen secretaris &amp; Wetenschappelijk adviseur Vegebe</p>
+                    <p class="team-desc">
+                        Annelien coördineert het beleid met bijzondere aandacht voor de wetenschappelijke en technische dossiers die de federaties aanbelangen. Ze volgt thematische werkgroepen op rond milieu, duurzaamheid, voedselveiligheid en landbouw.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="stats">
         <div class="container">
             <h2 class="section-title">Kerncijfers Belgische aardappelsector (2023)</h2>
@@ -580,8 +701,19 @@
                 </div>
             </div>
             <p style="margin-top:26px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto;">
-                In Vlaanderen bedraagt het aardappelareaal <strong>50&nbsp;753 ha</strong>, in Wallonië <strong>42&nbsp;000 ha</strong>. België exporteert ongeveer <strong>90&nbsp;%</strong> van zijn diepvriesfrieten – een echte wereldspeler dus.
+                In Vlaanderen bedraagt het aardappelareaal ongeveer <strong>55&nbsp;000 ha</strong>, in Wallonië rond <strong>45&nbsp;000 ha</strong>. België exporteert naar schatting <strong>90&nbsp;%</strong> van zijn diepvriesfrieten – een echte wereldspeler dus.
             </p>
+
+            <div class="membership-fee">
+                <h3>Lidgeld</h3>
+                <p>Het lidmaatschap van Belgapom is bedoeld voor bedrijven actief in de aardappelhandel, -verwerking, verpakking, pootgoed en aanverwante activiteiten. Het lidgeld wordt berekend op basis van de grootte en activiteit van het bedrijf.</p>
+                <ul>
+                    <li>Een combinatie van een vaste basisbijdrage en een variabele component volgens bedrijfsomvang en activiteit.</li>
+                    <li>Specifieke afspraken voor nieuwe leden, starters of bedrijven met meerdere vestigingen zijn mogelijk.</li>
+                    <li>Meer informatie over de actuele tarieven ontvang je op eenvoudig verzoek.</li>
+                </ul>
+                <p>Wil je weten welk lidgeld voor jouw bedrijf van toepassing is? <a href="#contact">Neem contact op</a> en we bezorgen je graag een voorstel op maat.</p>
+            </div>
         </div>
     </section>
 
@@ -596,13 +728,25 @@
                     <p><strong>E-mail:</strong> <a href="mailto:info@belgapom.be">info@belgapom.be</a></p>
                 </div>
                 <div class="contact-form">
-                    <form action="mailto:info@belgapom.be" method="post" enctype="text/plain">
+                    <form id="contact-form" action="mailto:info@belgapom.be" method="post" enctype="text/plain" onsubmit="return validateForm();">
                         <input type="text" name="name" placeholder="Naam" required>
                         <input type="text" name="company" placeholder="Bedrijf" required>
                         <input type="email" name="email" placeholder="E-mail" required>
                         <textarea name="message" placeholder="Bericht" rows="4" required></textarea>
+
+                        <div class="antispam-wrapper">
+                            <label for="antispam">Beveiligingsvraag: hoeveel is 3 + 4?</label>
+                            <input type="text" id="antispam" name="antispam" placeholder="Vul het antwoord in" autocomplete="off" required>
+                        </div>
+
+                        <!-- Honeypot veld voor bots -->
+                        <div style="position:absolute; left:-9999px; opacity:0;" aria-hidden="true">
+                            <label>Laat dit veld leeg</label>
+                            <input type="text" name="website">
+                        </div>
+
                         <button type="submit">Verzend</button>
-                        <p class="form-note">Je gegevens worden enkel gebruikt voor dit contact.</p>
+                        <p class="form-note">Je gegevens worden enkel gebruikt om je vraag over het lidmaatschap te beantwoorden.</p>
                     </form>
                 </div>
             </div>
@@ -610,11 +754,27 @@
     </section>
 
     <footer>
-        <div class="footer-logo">
-            <img src="images/logo.png.png" alt="Belgapom logo" />
-        </div>
-        <p>&copy; 2023 Belgapom – Belgische federatie voor aardappelhandel en -verwerking.</p>
+        <p>&copy; 2025 Belgapom – Belgische federatie voor aardappelhandel en -verwerking.</p>
+        <p>BE 0407.590.436 — Guldensporenpark 120, 9820 Merelbeke — <a href="mailto:christophe.vermeulen@fvphouse.be">christophe.vermeulen@fvphouse.be</a></p>
         <p><a href="https://belgapom.be" target="_blank" rel="noopener">Bezoek onze hoofdwebsite</a></p>
     </footer>
+
+    <script>
+        function validateForm() {
+            var anti = document.getElementById('antispam');
+            var honeypot = document.querySelector('input[name="website"]');
+
+            if (honeypot && honeypot.value.trim() !== '') {
+                // Verborgen veld is ingevuld: waarschijnlijk een bot
+                return false;
+            }
+
+            if (!anti || anti.value.trim() !== '7') {
+                alert('Beveiligingsvraag is niet correct ingevuld.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
