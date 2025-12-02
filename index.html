@@ -16,7 +16,7 @@
 
     <!-- Google Analytics ID (VERVANG G-XXXXXXXXXX door jouw echte GA4-ID) -->
     <script>
-        window.GA_MEASUREMENT_ID = 'G-RR7NXDC71J';
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1052,7 +1052,7 @@
                     <span data-lang="fr" hidden>Plan sectoriel d’échantillonnage</span>
                 </h4>
                 <p data-lang="nl">
-                    Door het FAVV gevalideerd bemonsteringsplan met analyses op metalen, residu’s en fytosanitaire parameters. Inclusief eindrapport dat u bij controles kunt voorleggen.
+                    Door het FAVV gevalideerd sectoraal bemonsteringsplan met analyses op metalen, residu’s en fytosanitaire parameters. Inclusief eindrapport dat u bij controles kunt voorleggen.
                 </p>
                 <p data-lang="fr" hidden>
                     Plan sectoriel d’échantillonnage validé par l’AFSCA, comprenant des analyses des métaux, des résidus et de paramètres phytosanitaires. Inclut un rapport final à présenter lors des contrôles.
@@ -1173,8 +1173,8 @@
 <section id="stats">
     <div class="container">
         <h2 class="section-title">
-            <span data-lang="nl">Kerncijfers Belgische aardappelsector (2024)</span>
-            <span data-lang="fr" hidden>Chiffres-clés du secteur belge de la pomme de terre (2024)</span>
+            <span data-lang="nl">Kerncijfers Belgische aardappelsector (2023)</span>
+            <span data-lang="fr" hidden>Chiffres-clés du secteur belge de la pomme de terre (2023)</span>
         </h2>
 
         <div class="stats">
@@ -1198,8 +1198,8 @@
 
             <div class="stat">
                 <h3>618&nbsp;milj.</h3>
-                <p data-lang="nl">Euro investeringen in 2024</p>
-                <p data-lang="fr" hidden>Euros d’investissements en 2024</p>
+                <p data-lang="nl">Euro investeringen in 2023</p>
+                <p data-lang="fr" hidden>Euros d’investissements en 2023</p>
             </div>
         </div>
 
@@ -1245,19 +1245,21 @@
                 <br>
 
                 <p style="font-size: 0.9em; font-style: italic;" data-lang="nl">
-                    Let op: het formulier hiernaast opent uw standaard e-mailprogramma.
+                    De gegevens die u via het formulier verstuurt, worden beveiligd verzonden via een versleutelde HTTPS-verbinding.
                 </p>
                 <p style="font-size: 0.9em; font-style: italic;" data-lang="fr" hidden>
-                    Attention&nbsp;: le formulaire ci-contre ouvre votre programme de messagerie par défaut.
+                    Les données que vous envoyez via le formulaire sont transmises de manière sécurisée via une connexion chiffrée (HTTPS).
                 </p>
             </div>
 
             <div class="contact-form">
                 <form id="contact-form"
-                      action="mailto:info@belgapom.be"
-                      method="post"
-                      enctype="text/plain"
+                      action="https://formspree.io/f/xdkqzler"
+                      method="POST"
                       onsubmit="return validateForm();">
+
+                    <input type="hidden" name="form_name" value="Belgapom ledenlanding">
+
                     <input type="text" name="name" data-placeholder-nl="Naam" data-placeholder-fr="Nom" placeholder="Naam" required>
                     <input type="text" name="company" data-placeholder-nl="Bedrijf" data-placeholder-fr="Entreprise" placeholder="Bedrijf" required>
                     <input type="email" name="email" data-placeholder-nl="E-mail" data-placeholder-fr="E-mail" placeholder="E-mail" required>
@@ -1271,6 +1273,7 @@
                         </label>
                     </div>
 
+                    <!-- Honeypot tegen bots -->
                     <div style="position:absolute; left:-9999px; opacity:0;" aria-hidden="true">
                         <label>
                             <span data-lang="nl">Laat dit veld leeg</span>
@@ -1285,8 +1288,8 @@
                     </button>
 
                     <p class="form-note">
-                        <span data-lang="nl">Je gegevens worden verstuurd via je e-mailprogramma.</span>
-                        <span data-lang="fr" hidden>Vos données seront envoyées via votre programme de messagerie.</span>
+                        <span data-lang="nl">Je gegevens worden veilig verwerkt. Je ontvangt een bevestiging via het opgegeven e-mailadres.</span>
+                        <span data-lang="fr" hidden>Vos données sont traitées en toute sécurité. Vous recevrez une confirmation à l’adresse e-mail indiquée.</span>
                     </p>
                 </form>
             </div>
