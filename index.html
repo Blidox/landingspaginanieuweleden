@@ -13,6 +13,8 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Analytics ID (VERVANG G-XXXXXXXXXX door jouw echte GA4-ID) -->
     <script>
         window.GA_MEASUREMENT_ID = 'G-RR7NXDC71J';
     </script>
@@ -50,7 +52,7 @@
             display: block;
         }
 
-        /* Header */
+        /* Header (desktop) */
         header {
             position: fixed;
             top: 0;
@@ -64,7 +66,7 @@
             background: #FFFFFF;
             border-bottom: 1px solid #EDE3C5;
             box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-            height: 90px; /* Vaste hoogte voor berekeningen */
+            height: 90px; /* Vaste hoogte voor desktop */
         }
 
         .logo {
@@ -661,43 +663,50 @@
             display: none;
         }
 
-        /* Responsive adjustments */
+        /* ================= MOBIEL AANPASSINGEN ================= */
         @media (max-width: 768px) {
+            /* Header niet meer fixed, compacter */
             header {
+                position: relative;
                 flex-direction: column;
                 align-items: center;
-                padding: 10px 20px;
+                padding: 8px 16px 10px;
                 height: auto;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             }
 
             .logo {
-                margin-bottom: 10px;
+                margin-bottom: 6px;
             }
 
             .logo img {
-                height: 50px;
+                height: 40px;
                 margin-right: 0;
             }
 
             nav ul {
                 flex-wrap: wrap;
-                gap: 15px;
+                gap: 10px;
                 justify-content: center;
-                margin-top: 5px;
+                margin-top: 2px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
             }
 
             .lang-switch {
-                margin-top: 8px;
+                margin-top: 6px;
             }
 
             .hero-video {
-                padding-top: 160px;
+                padding-top: 40px; /* veel minder witruimte bovenaan */
                 align-items: flex-start;
             }
 
             .hero-content {
                 text-align: left;
-                margin-top: 20px;
+                margin-top: 10px;
             }
 
             .hero-actions {
@@ -760,7 +769,7 @@
             </li>
             <li>
                 <a href="#video">
-                    <span data-lang="nl">In Beeld</span>
+                    <span data-lang="nl">In beeld</span>
                     <span data-lang="fr" hidden>Vidéo</span>
                 </a>
             </li>
@@ -1050,7 +1059,7 @@
                     <span data-lang="fr" hidden>Plan sectoriel d’échantillonnage</span>
                 </h4>
                 <p data-lang="nl">
-                    Door het FAVV gevalideerd bemonsteringsplan met analyses op metalen, residu’s en fytosanitaire parameters. Inclusief eindrapport dat u bij controles kunt voorleggen.
+                    Door het FAVV gevalideerd sectoraal bemonsteringsplan met analyses op metalen, residu’s en fytosanitaire parameters. Inclusief eindrapport dat u bij controles kunt voorleggen.
                 </p>
                 <p data-lang="fr" hidden>
                     Plan sectoriel d’échantillonnage validé par l’AFSCA, comprenant des analyses des métaux, des résidus et de paramètres phytosanitaires. Inclut un rapport final à présenter lors des contrôles.
@@ -1171,8 +1180,8 @@
 <section id="stats">
     <div class="container">
         <h2 class="section-title">
-            <span data-lang="nl">Kerncijfers Belgische aardappelsector (2024)</span>
-            <span data-lang="fr" hidden>Chiffres-clés du secteur belge de la pomme de terre (2024)</span>
+            <span data-lang="nl">Kerncijfers Belgische aardappelsector (2023)</span>
+            <span data-lang="fr" hidden>Chiffres-clés du secteur belge de la pomme de terre (2023)</span>
         </h2>
 
         <div class="stats">
@@ -1304,11 +1313,11 @@
 <!-- COOKIEBANNER -->
 <div id="cookie-banner" class="cookie-banner hidden">
     <p data-lang="nl">
-        Belgapom gebruikt analytische cookies (Google Analytics) om het gebruik van deze pagina te meten.
+        Belgapom gebruikt analytische cookies om het gebruik van deze pagina te meten.
         Je gegevens worden anoniem verwerkt. Ga je akkoord met het plaatsen van deze cookies?
     </p>
     <p data-lang="fr" hidden>
-        Belgapom utilise des cookies analytiques (Google Analytics) pour mesurer l’utilisation de cette page.
+        Belgapom utilise des cookies analytiques pour mesurer l’utilisation de cette page.
         Vos données sont traitées de manière anonyme. Acceptez-vous l’installation de ces cookies&nbsp;?
     </p>
 
