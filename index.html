@@ -14,7 +14,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <!-- Google Analytics ID (VERVANG G-XXXXXXXXXX door jouw echte GA4-ID) -->
+    <!-- Google Analytics ID -->
     <script>
         window.GA_MEASUREMENT_ID = 'G-RR7NXDC71J';
     </script>
@@ -37,7 +37,7 @@
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: #333333;
-            background: #FFFFFF;
+            background: #FFFDF8;
             overflow-x: hidden;
         }
 
@@ -147,7 +147,9 @@
         .hero-video-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(255, 202, 0, 0.15), transparent 55%), linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 202, 0, 0.15), transparent 55%),
+                linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
             z-index: 1;
         }
 
@@ -217,9 +219,23 @@
 
         /* Sections & Containers */
         section {
-            padding: 70px 20px;
+            padding: 80px 20px;
             position: relative;
             scroll-margin-top: 100px;
+        }
+
+        /* Afwisselende subtiele achtergrond per sectie voor meer flow */
+        section.hero-video {
+            background: none;
+            padding-top: 0;
+        }
+
+        section:not(.hero-video):nth-of-type(2n) {
+            background: radial-gradient(circle at top, rgba(255,202,0,0.08), transparent 55%), #FFF9F0;
+        }
+
+        section:not(.hero-video):nth-of-type(2n+1) {
+            background: #FFFDF8;
         }
 
         .container {
@@ -229,7 +245,7 @@
             padding: 30px 20px;
             border-radius: 30px;
             background: #FFFFFF;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
             border: 1px solid #EFE8D8;
         }
 
@@ -250,6 +266,18 @@
             margin: 10px auto 0;
             background: linear-gradient(90deg, #FFB800, #FFD350);
             border-radius: 2px;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* About section */
@@ -408,10 +436,16 @@
 
         /* Testimonial Section */
         .testimonial-section {
-            background-color: #F8F4EA;
-            padding: 50px 20px;
-            margin: 40px 0;
+            background: radial-gradient(circle at top, rgba(255,202,0,0.12), transparent 60%), #F8F4EA;
+            padding: 70px 20px;
+            margin: 0;
             text-align: center;
+        }
+
+        .testimonial-section .container {
+            background: transparent;
+            box-shadow: none;
+            border: none;
         }
 
         .testimonial-quote {
@@ -599,7 +633,7 @@
             color: #5A5A5A;
             font-size: 0.85rem;
             border-top: 1px solid #EDE3C5;
-            margin-top: 20px;
+            margin-top: 0;
         }
 
         footer p {
@@ -725,6 +759,10 @@
             .sampling-plan {
                 padding: 20px 18px;
             }
+
+            section {
+                padding: 60px 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -734,10 +772,6 @@
 
             .hero-subtitle {
                 font-size: 0.95rem;
-            }
-
-            section {
-                padding: 55px 16px;
             }
 
             .benefit-card {
@@ -814,7 +848,7 @@
 
     <div class="hero-video-overlay"></div>
 
-    <div class="hero-content">
+    <div class="hero-content reveal">
         <p class="hero-kicker" data-lang="nl">Belgische aardappelhandel &amp; -verwerking</p>
         <p class="hero-kicker" data-lang="fr" hidden>Commerce et transformation belges de la pomme de terre</p>
 
@@ -844,7 +878,7 @@
 </section>
 
 <section id="about">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Wat is Belgapom?</span>
             <span data-lang="fr" hidden>Qui est Belgapom&nbsp;?</span>
@@ -885,7 +919,7 @@
 </section>
 
 <section id="video">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Ontdek Belgapom in beeld</span>
             <span data-lang="fr" hidden>Découvrez Belgapom en images</span>
@@ -960,7 +994,7 @@
 </section>
 
 <section id="benefits">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Voordelen van het lidmaatschap</span>
             <span data-lang="fr" hidden>Avantages de l’adhésion</span>
@@ -1093,7 +1127,7 @@
 </section>
 
 <section class="testimonial-section">
-    <div class="container" style="background: transparent; box-shadow: none; border: none; padding: 0;">
+    <div class="container reveal">
         <blockquote class="testimonial-quote" data-lang="nl">
             "Het lidmaatschap bij Belgapom zorgt ervoor dat wij altijd proactief geïnformeerd zijn over nieuwe wetgeving. Een onmisbare partner voor onze export."
         </blockquote>
@@ -1107,7 +1141,7 @@
 </section>
 
 <section id="team">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Het team</span>
             <span data-lang="fr" hidden>L’équipe</span>
@@ -1178,7 +1212,7 @@
 </section>
 
 <section id="stats">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Kerncijfers Belgische aardappelsector (2024)</span>
             <span data-lang="fr" hidden>Chiffres-clés du secteur belge de la pomme de terre (2024)</span>
@@ -1220,7 +1254,7 @@
 </section>
 
 <section id="contact">
-    <div class="container">
+    <div class="container reveal">
         <h2 class="section-title">
             <span data-lang="nl">Klaar om lid te worden?</span>
             <span data-lang="fr" hidden>Prêt à devenir membre&nbsp;?</span>
@@ -1387,19 +1421,18 @@
         /* ========= COOKIECONSENT + GOOGLE ANALYTICS ========= */
 
         function loadAnalytics() {
-            if (window.analyticsLoaded || !window.GA_MEASUREMENT_ID || window.GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
+            if (window.analyticsLoaded || !window.GA_MEASUREMENT_ID) {
                 return;
             }
             window.analyticsLoaded = true;
 
-            // Laad GA4-script dynamisch
             var gtagScript = document.createElement('script');
             gtagScript.async = true;
             gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
             document.head.appendChild(gtagScript);
 
             window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+            function gtag(){ dataLayer.push(arguments); }
             window.gtag = gtag;
 
             gtag('js', new Date());
@@ -1418,7 +1451,6 @@
             } else if (storedConsent === 'declined') {
                 banner.classList.add('hidden');
             } else {
-                // Nog geen keuze: toon banner
                 banner.classList.remove('hidden');
             }
 
@@ -1441,7 +1473,32 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', initCookieBanner);
+        /* ========= SCROLL REVEAL ========= */
+        function initReveal() {
+            var elements = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || elements.length === 0) {
+                elements.forEach(function (el) { el.classList.add('visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            elements.forEach(function (el) {
+                observer.observe(el);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initCookieBanner();
+            initReveal();
+        });
     })();
 
     function validateForm() {
@@ -1450,7 +1507,6 @@
         var lang = (typeof window.getCurrentLanguage === 'function') ? window.getCurrentLanguage() : 'nl';
 
         if (honeypot && honeypot.value.trim() !== '') {
-            // Verborgen veld is ingevuld: waarschijnlijk een bot
             return false;
         }
 
