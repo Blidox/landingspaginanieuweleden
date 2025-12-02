@@ -372,6 +372,40 @@
             margin-bottom: 15px;
         }
 
+        /* Sampling plan block */
+        .sampling-plan {
+            margin-top: 40px;
+            padding: 24px 24px 26px;
+            border-radius: 24px;
+            background: #F8F4EA;
+            border: 1px solid #EFE8D8;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .sampling-plan-icon {
+            font-size: 2.4rem;
+            flex: 0 0 auto;
+        }
+
+        .sampling-plan-text {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .sampling-plan-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
+        .sampling-plan-text p {
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
         /* Testimonial Section */
         .testimonial-section {
             background-color: #F8F4EA;
@@ -679,6 +713,10 @@
 
             .stats {
                 flex-direction: column;
+            }
+
+            .sampling-plan {
+                padding: 20px 18px;
             }
         }
 
@@ -1006,27 +1044,40 @@
                 </p>
             </div>
 
-            <!-- NIEUWE KAART: Sectoraal bemonsteringsplan -->
+            <!-- KORTE KAART: Sectoraal bemonsteringsplan (teaser) -->
             <div class="benefit-card">
                 <div class="benefit-icon">🧪</div>
                 <h4>
                     <span data-lang="nl">Sectoraal bemonsteringsplan</span>
                     <span data-lang="fr" hidden>Plan sectoriel d’échantillonnage</span>
                 </h4>
+                <p data-lang="nl">
+                    Door het FAVV gevalideerd sectoraal bemonsteringsplan met analyses op metalen, residu’s en fytosanitaire parameters. Inclusief eindrapport dat u bij controles kunt voorleggen.
+                </p>
+                <p data-lang="fr" hidden>
+                    Plan sectoriel d’échantillonnage validé par l’AFSCA, comprenant des analyses des métaux, des résidus et de paramètres phytosanitaires. Inclut un rapport final à présenter lors des contrôles.
+                </p>
+            </div>
+        </div>
+
+        <!-- APARTE BLOK: UITGEBREIDE INFO BEMONSTERINGSPLAN -->
+        <div class="sampling-plan">
+            <div class="sampling-plan-icon">🧪</div>
+            <div class="sampling-plan-text">
+                <h3 data-lang="nl">Kostenefficiënte aanpak voor sectorale bemonstering</h3>
+                <h3 data-lang="fr" hidden>Approche rentable pour l’échantillonnage sectoriel</h3>
 
                 <p data-lang="nl">
-                    <strong>Kostenefficiënte aanpak voor sectorale bemonstering</strong><br><br>
                     Belgapom biedt sinds 2011 een door het FAVV gevalideerd sectoraal bemonsteringsplan, waarmee uw bedrijf efficiënt voldoet aan alle wettelijke eisen. Het plan omvat controles op metalen (Cd, Pb), chemische residuen (CIPC, PFAS en multi-residuen) en fytosanitaire parameters zoals bruin- en ringrot.
                 </p>
-                <p data-lang="nl" style="margin-top: 10px;">
+                <p data-lang="nl">
                     Na afronding ontvangt u een volledig eindrapport dat u kunt voorleggen bij een controle. Het labo factureert de analyse rechtstreeks aan uw bedrijf, zodat u de resultaten eenvoudig kunt integreren in uw eigen kwaliteitssysteem. Zo voldoet uw onderneming aan de vereisten van het FAVV, beheert u risico’s professioneel en dit aan lagere kosten dan wanneer u zelf het volledige bemonsteringsprogramma zou uitvoeren.
                 </p>
 
                 <p data-lang="fr" hidden>
-                    <strong>Approche rentable pour l’échantillonnage sectoriel</strong><br><br>
-                    Depuis 2011, Belgapom propose un plan sectoriel d’échantillonnage validé par l’AFSCA, qui permet à votre entreprise de répondre efficacement à toutes les exigences légales. Ce plan comprend des contrôles des métaux (Cd, Pb), des résidus chimiques (CIPC, PFAS et multi-résidus) ainsi que de paramètres phytosanitaires tels que la pourriture brune et la pourriture annulaire.
+                    Depuis 2011, Belgapom propose un plan sectoriel d’échantillonnage validé par l’AFSCA, qui permet à votre entreprise de répondre efficacement à l’ensemble des exigences légales. Ce plan comprend des contrôles des métaux (Cd, Pb), des résidus chimiques (CIPC, PFAS et multi-résidus) ainsi que de paramètres phytosanitaires tels que la pourriture brune et la pourriture annulaire.
                 </p>
-                <p data-lang="fr" hidden style="margin-top: 10px;">
+                <p data-lang="fr" hidden>
                     À l’issue du programme, vous recevez un rapport final complet que vous pouvez présenter en cas de contrôle. Le laboratoire facture directement l’analyse à votre entreprise, ce qui vous permet d’intégrer facilement les résultats dans votre propre système qualité. Votre entreprise satisfait ainsi aux exigences de l’AFSCA, gère les risques de manière professionnelle et ce, à un coût inférieur à celui d’un programme d’échantillonnage entièrement individuel.
                 </p>
             </div>
@@ -1064,7 +1115,7 @@
                 <p class="team-role" data-lang="nl">Directeur en CEO van Belgapom</p>
                 <p class="team-role" data-lang="fr" hidden>Directeur et CEO de Belgapom</p>
                 <p class="team-desc" data-lang="nl">
-                    Christophe verzorgt de dagelijkse leiding, volgt juridische en socio-economische dossiers op en is verantwoordelijk voor strategie, lobbywerk en PR
+                    Christophe verzorgt de dagelijkse leiding, volgt juridische en socio-economische dossiers op en is verantwoordelijk voor strategie, lobbywerk en PR.
                 </p>
                 <p class="team-desc" data-lang="fr" hidden>
                     Christophe assure la gestion quotidienne, suit les dossiers juridiques et socio-économiques, et est responsable de la stratégie, du lobbying et des relations publiques.
@@ -1079,7 +1130,7 @@
                 <p class="team-role" data-lang="nl">Import-Export Manager, algemeen secretaris Fresh Trade Belgium</p>
                 <p class="team-role" data-lang="fr" hidden>Import-Export Manager, secrétaire générale de Fresh Trade Belgium</p>
                 <p class="team-desc" data-lang="nl">
-                    Veerle is het aanspreekpunt voor onder meer import- en exportdossiers, voedselveiligheid, gids Autocontrole en duurzaamheidsrapportering
+                    Veerle is het aanspreekpunt voor onder meer import- en exportdossiers, voedselveiligheid, gids Autocontrole en duurzaamheidsrapportering.
                 </p>
                 <p class="team-desc" data-lang="fr" hidden>
                     Veerle est le point de contact pour, entre autres, les dossiers d’import et d’export, la sécurité alimentaire, le Guide d’Autocontrôle et le reporting en matière de durabilité.
@@ -1177,7 +1228,7 @@
                     Heb je vragen over het lidmaatschap of wil je graag kennismaken? Vul het formulier in of stuur ons een e-mail. De lidgelden worden berekend op basis van de activiteit en grootte van je bedrijf.
                 </p>
                 <p data-lang="fr" hidden>
-                    Vous avez des questions concernant l’adhésion ou vous souhaitez faire connaissance&nbsp;? Remplissez le formulaire ou envoyez-nous un e-mail. Les cotisations sont calculées en fonction de l’activité et de la taille votre entreprise.
+                    Vous avez des questions concernant l’adhésion ou vous souhaitez faire connaissance&nbsp;? Remplissez le formulaire ou envoyez-nous un e-mail. Les cotisations sont calculées en fonction de l’activité et de la taille de votre entreprise.
                 </p>
 
                 <p>
