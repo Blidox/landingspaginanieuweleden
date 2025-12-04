@@ -530,6 +530,90 @@
             color: #333333;
         }
 
+        /* PRICING SECTION */
+        #pricing .container {
+            background: linear-gradient(135deg, #FFF9E8, #FFFFFF);
+        }
+
+        .pricing-intro {
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            text-align: center;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #333333;
+        }
+
+        .pricing-tabs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            border-radius: 999px;
+            background: #F4EBD1;
+            padding: 3px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-tabs-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .pricing-tab-btn {
+            border: none;
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: transparent;
+            color: #5B4B1A;
+            font-weight: 500;
+        }
+
+        .pricing-tab-btn.active {
+            background: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .pricing-card {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 18px 20px 16px;
+            border-radius: 20px;
+            background: #FFFFFF;
+            border: 1px solid #EFE8D8;
+            font-size: 0.93rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #FFB800;
+            text-align: left;
+        }
+
+        .pricing-card p {
+            margin-bottom: 8px;
+        }
+
+        .pricing-card ul {
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+
+        .pricing-card[hidden] {
+            display: none !important;
+        }
+
+        .pricing-note {
+            font-size: 0.8rem;
+            color: #777777;
+            margin-top: 14px;
+            font-style: italic;
+            text-align: center;
+        }
+
         /* Contact section */
         .contact-grid {
             display: flex;
@@ -688,145 +772,8 @@
             display: none;
         }
 
-        /* ====== PRICING (LIDGELD) – DYNAMISCH BLOK ====== */
-        .pricing-section {
-            margin-top: 40px;
-            border-radius: 24px;
-            background: #FFFDF7;
-            border: 1px solid #EFE8D8;
-            padding: 18px 20px 10px;
-        }
-
-        .pricing-toggle {
-            width: 100%;
-            border: none;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            cursor: pointer;
-            padding: 6px 0 10px;
-        }
-
-        .pricing-toggle-text {
-            text-align: left;
-        }
-
-        .pricing-toggle-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-        }
-
-        .pricing-toggle-sub {
-            font-size: 0.9rem;
-            color: #666666;
-        }
-
-        .pricing-toggle-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 999px;
-            border: 1px solid #FFCA00;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            background: #FFFAE0;
-            flex-shrink: 0;
-            transition: transform 0.25s ease;
-        }
-
-        .pricing-toggle-icon.open {
-            transform: rotate(180deg);
-        }
-
-        .pricing-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .pricing-panel-inner {
-            margin-top: 16px;
-            border-top: 1px dashed #E0D4B2;
-            padding-top: 16px;
-        }
-
-        .pricing-intro {
-            font-size: 0.95rem;
-            margin-bottom: 14px;
-            color: #333333;
-        }
-
-        .pricing-tabs {
-            display: inline-flex;
-            flex-wrap: wrap;
-            border-radius: 999px;
-            background: #F4EBD1;
-            padding: 3px;
-            margin-bottom: 14px;
-        }
-
-        .pricing-tab-btn {
-            border: none;
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            background: transparent;
-            color: #5B4B1A;
-            font-weight: 500;
-        }
-
-        .pricing-tab-btn.active {
-            background: #FFFFFF;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-            gap: 20px;
-        }
-
-        .pricing-card {
-            padding: 16px 18px;
-            border-radius: 18px;
-            background: #FFFFFF;
-            border: 1px solid #EFE8D8;
-            font-size: 0.93rem;
-        }
-
-        .pricing-card h4 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-            color: #FFB800;
-        }
-
-        .pricing-card strong {
-            font-weight: 700;
-        }
-
-        .pricing-card ul {
-            margin-left: 18px;
-            margin-top: 6px;
-        }
-
-        .pricing-note {
-            font-size: 0.8rem;
-            color: #777777;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        .pricing-card[hidden] {
-            display: none !important;
-        }
-
         /* ================= MOBIEL ================= */
         @media (max-width: 768px) {
-            /* Header niet meer fixed, compacter */
             header {
                 position: relative;
                 flex-direction: column;
@@ -887,12 +834,12 @@
                 padding: 20px 18px;
             }
 
-            .pricing-cards {
-                grid-template-columns: 1fr;
-            }
-
             section {
                 padding: 60px 16px;
+            }
+
+            .pricing-card {
+                padding: 16px 16px 14px;
             }
         }
 
@@ -954,6 +901,12 @@
                 <a href="#stats">
                     <span data-lang="nl">Onze sector</span>
                     <span data-lang="fr" hidden>Chiffres-clés</span>
+                </a>
+            </li>
+            <li>
+                <a href="#pricing">
+                    <span data-lang="nl">Lidgeld</span>
+                    <span data-lang="fr" hidden>Cotisation</span>
                 </a>
             </li>
             <li>
@@ -1252,112 +1205,6 @@
                 </p>
             </div>
         </div>
-
-        <!-- DYNAMISCHE LIDGELD-SECTIE -->
-        <div class="pricing-section">
-            <button class="pricing-toggle" type="button" onclick="togglePricing()">
-                <div class="pricing-toggle-text">
-                    <div class="pricing-toggle-title">
-                        <span data-lang="nl">Lidgeld &amp; bijdragen</span>
-                        <span data-lang="fr" hidden>Cotisation &amp; contributions</span>
-                    </div>
-                    <div class="pricing-toggle-sub">
-                        <span data-lang="nl">Ontdek hoe het lidmaatschap wordt berekend per sectie en activiteit.</span>
-                        <span data-lang="fr" hidden>Découvrez comment la cotisation est calculée selon la section et l’activité.</span>
-                    </div>
-                </div>
-                <div id="pricing-toggle-icon" class="pricing-toggle-icon" aria-hidden="true">⌄</div>
-            </button>
-
-            <div id="pricing-panel" class="pricing-panel">
-                <div class="pricing-panel-inner">
-                    <p class="pricing-intro" data-lang="nl">
-                        Het lidmaatschap van Belgapom is voorbehouden voor groothandels- en verwerkingsbedrijven uit de aardappelsector en geldt voor één jaar
-                        (opzegbaar in het jaar voorafgaand aan de opzeg). Het lidmaatschapsbedrag is afhankelijk van de activiteit en de sectie waarbinnen de activiteit zich situeert.
-                    </p>
-                    <p class="pricing-intro" data-lang="fr" hidden>
-                        L’adhésion à Belgapom est réservée aux entreprises de gros et de transformation du secteur de la pomme de terre et est valable pour un an
-                        (résiliable durant l’année précédant la sortie). Le montant de la cotisation dépend de l’activité et de la section dans laquelle elle se situe.
-                    </p>
-
-                    <div class="pricing-tabs">
-                        <button type="button" class="pricing-tab-btn active"
-                                data-tab="handel" onclick="setPricingTab('handel')">
-                            <span data-lang="nl">Sectie handel</span>
-                            <span data-lang="fr" hidden>Section commerce</span>
-                        </button>
-                        <button type="button" class="pricing-tab-btn"
-                                data-tab="verwerking" onclick="setPricingTab('verwerking')">
-                            <span data-lang="nl">Sectie verwerking</span>
-                            <span data-lang="fr" hidden>Section transformation</span>
-                        </button>
-                    </div>
-
-                    <div class="pricing-cards">
-                        <!-- HANDEL -->
-                        <div class="pricing-card" data-pricing-content="handel">
-                            <h4 data-lang="nl">Sectie handel</h4>
-                            <h4 data-lang="fr" hidden>Section commerce</h4>
-
-                            <p data-lang="nl">
-                                <strong>Basisbedrag:</strong> € 950,00<br>
-                                Daarbovenop komt een bijkomend bedrag voor de 2de, 3de en 4de activiteit,
-                                op basis van de klasse van het verhandelde product en de volumes.
-                            </p>
-                            <p data-lang="fr" hidden>
-                                <strong>Cotisation de base&nbsp;:</strong> 950,00&nbsp;€<br>
-                                S’y ajoute un montant complémentaire pour la 2e, 3e et 4e activité,
-                                en fonction de la catégorie de produit commercialisé et des volumes.
-                            </p>
-
-                            <p style="margin-top:10px;" data-lang="nl"><strong>Overzicht van de activiteiten:</strong></p>
-                            <p style="margin-top:10px;" data-lang="fr" hidden><strong>Aperçu des activités&nbsp;:</strong></p>
-
-                            <ul>
-                                <li data-lang="nl">Groothandel in pootgoed</li>
-                                <li data-lang="fr" hidden>Commerce de gros de plants de pommes de terre</li>
-
-                                <li data-lang="nl">Import consumptieaardappelen</li>
-                                <li data-lang="fr" hidden>Importation de pommes de terre de consommation</li>
-
-                                <li data-lang="nl">Uitvoer consumptieaardappelen</li>
-                                <li data-lang="fr" hidden>Exportation de pommes de terre de consommation</li>
-
-                                <li data-lang="nl">Bereider / verpakker</li>
-                                <li data-lang="fr" hidden>Préparateur / conditionneur</li>
-
-                                <li data-lang="nl">Aardappelschilbedrijf</li>
-                                <li data-lang="fr" hidden>Entreprise d’épluchage de pommes de terre</li>
-                            </ul>
-                        </div>
-
-                        <!-- VERWERKING -->
-                        <div class="pricing-card" data-pricing-content="verwerking" hidden>
-                            <h4 data-lang="nl">Sectie verwerking</h4>
-                            <h4 data-lang="fr" hidden>Section transformation</h4>
-
-                            <p data-lang="nl">
-                                <strong>Basisbedrag:</strong> € 5.000,00<br>
-                                Er is een differentiatie op basis van de verwerkte volumes en de producten.
-                            </p>
-                            <p data-lang="fr" hidden>
-                                <strong>Cotisation de base&nbsp;:</strong> 5&nbsp;000,00&nbsp;€<br>
-                                Une différenciation est appliquée en fonction des volumes et des produits transformés.
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="pricing-note" data-lang="nl">
-                        De hierboven vermelde verdeelsleutels en bedragen zijn gebaseerd op de tarieven van 2018.
-                        Het exacte lidgeld wordt bevestigd bij aansluiting.
-                    </p>
-                    <p class="pricing-note" data-lang="fr" hidden>
-                        Les clés de répartition et montants ci-dessus sont basés sur les tarifs de 2018.
-                        Le montant exact de la cotisation est confirmé lors de l’adhésion.
-                    </p>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1484,6 +1331,99 @@
         </p>
         <p style="margin-top:26px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto;" data-lang="fr" hidden>
             En Flandre, la superficie consacrée à la pomme de terre s’élève à environ <strong>55&nbsp;000 ha</strong>, contre environ <strong>45&nbsp;000 ha</strong> en Wallonie. On estime que la Belgique exporte près de <strong>90&nbsp;%</strong> de ses frites surgelées – une véritable puissance mondiale.
+        </p>
+    </div>
+</section>
+
+<!-- NIEUWE LIDGELD-SECTIE -->
+<section id="pricing">
+    <div class="container reveal">
+        <h2 class="section-title">
+            <span data-lang="nl">Lidgeld &amp; bijdragen</span>
+            <span data-lang="fr" hidden>Cotisation &amp; contributions</span>
+        </h2>
+
+        <p class="pricing-intro" data-lang="nl">
+            Het lidmaatschap van Belgapom is voorbehouden voor groothandels- en verwerkingsbedrijven uit de aardappelsector en geldt voor één jaar
+            (opzegbaar in het jaar voorafgaand aan de opzeg). Het lidmaatschapsbedrag is afhankelijk van de activiteit en de sectie waarbinnen de activiteit zich situeert.
+        </p>
+        <p class="pricing-intro" data-lang="fr" hidden>
+            L’adhésion à Belgapom est réservée aux entreprises de gros et de transformation du secteur de la pomme de terre et est valable pour un an
+            (résiliable durant l’année précédant la sortie). Le montant de la cotisation dépend de l’activité et de la section dans laquelle elle se situe.
+        </p>
+
+        <div class="pricing-tabs-wrapper">
+            <div class="pricing-tabs">
+                <button type="button" class="pricing-tab-btn active"
+                        data-tab="handel" onclick="setPricingTab('handel')">
+                    <span data-lang="nl">Sectie handel</span>
+                    <span data-lang="fr" hidden>Section commerce</span>
+                </button>
+                <button type="button" class="pricing-tab-btn"
+                        data-tab="verwerking" onclick="setPricingTab('verwerking')">
+                    <span data-lang="nl">Sectie verwerking</span>
+                    <span data-lang="fr" hidden>Section transformation</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="pricing-card" data-pricing-content="handel">
+            <h3 data-lang="nl">Sectie handel</h3>
+            <h3 data-lang="fr" hidden>Section commerce</h3>
+
+            <p data-lang="nl">
+                <strong>Basisbedrag:</strong> € 950,00<br>
+                Daarbovenop komt een bijkomend bedrag voor de 2de, 3de en 4de activiteit,
+                op basis van de klasse van het verhandelde product en de volumes.
+            </p>
+            <p data-lang="fr" hidden>
+                <strong>Cotisation de base&nbsp;:</strong> 950,00&nbsp;€<br>
+                S’y ajoute un montant complémentaire pour la 2e, 3e et 4e activité,
+                en fonction de la catégorie de produit commercialisé et des volumes.
+            </p>
+
+            <p style="margin-top:10px;" data-lang="nl"><strong>Overzicht van de activiteiten:</strong></p>
+            <p style="margin-top:10px;" data-lang="fr" hidden><strong>Aperçu des activités&nbsp;:</strong></p>
+
+            <ul>
+                <li data-lang="nl">Groothandel in pootgoed</li>
+                <li data-lang="fr" hidden>Commerce de gros de plants de pommes de terre</li>
+
+                <li data-lang="nl">Import consumptieaardappelen</li>
+                <li data-lang="fr" hidden>Importation de pommes de terre de consommation</li>
+
+                <li data-lang="nl">Uitvoer consumptieaardappelen</li>
+                <li data-lang="fr" hidden>Exportation de pommes de terre de consommation</li>
+
+                <li data-lang="nl">Bereider / verpakker</li>
+                <li data-lang="fr" hidden>Préparateur / conditionneur</li>
+
+                <li data-lang="nl">Aardappelschilbedrijf</li>
+                <li data-lang="fr" hidden>Entreprise d’épluchage de pommes de terre</li>
+            </ul>
+        </div>
+
+        <div class="pricing-card" data-pricing-content="verwerking" hidden>
+            <h3 data-lang="nl">Sectie verwerking</h3>
+            <h3 data-lang="fr" hidden>Section transformation</h3>
+
+            <p data-lang="nl">
+                <strong>Basisbedrag:</strong> € 5.000,00<br>
+                Er is een differentiatie op basis van de verwerkte volumes en de producten.
+            </p>
+            <p data-lang="fr" hidden>
+                <strong>Cotisation de base&nbsp;:</strong> 5&nbsp;000,00&nbsp;€<br>
+                Une différenciation est appliquée en fonction des volumes et des produits transformés.
+            </p>
+        </div>
+
+        <p class="pricing-note" data-lang="nl">
+            De hierboven vermelde verdeelsleutels en bedragen zijn gebaseerd op de tarieven van 2018.
+            Het exacte lidgeld wordt bevestigd bij aansluiting.
+        </p>
+        <p class="pricing-note" data-lang="fr" hidden>
+            Les clés de répartition et montants ci-dessus sont basés sur les tarifs de 2018.
+            Le montant exact de la cotisation est confirmé lors de l’adhésion.
         </p>
     </div>
 </section>
@@ -1730,22 +1670,7 @@
             });
         }
 
-        /* ========= PRICING (LIDGELD) ========= */
-
-        function togglePricing() {
-            var panel = document.getElementById('pricing-panel');
-            var icon = document.getElementById('pricing-toggle-icon');
-            if (!panel) return;
-
-            if (panel.style.maxHeight && panel.style.maxHeight !== '0px') {
-                panel.style.maxHeight = '0px';
-                if (icon) icon.classList.remove('open');
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + 'px';
-                if (icon) icon.classList.add('open');
-            }
-        }
-
+        /* ========= PRICING TABS ========= */
         function setPricingTab(tab) {
             var cards = document.querySelectorAll('[data-pricing-content]');
             cards.forEach(function (card) {
@@ -1757,23 +1682,14 @@
             buttons.forEach(function (btn) {
                 btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
             });
-
-            // hoogte opnieuw berekenen als paneel open is
-            var panel = document.getElementById('pricing-panel');
-            if (panel && panel.style.maxHeight && panel.style.maxHeight !== '0px') {
-                panel.style.maxHeight = panel.scrollHeight + 'px';
-            }
         }
 
-        // Exporteer naar global scope voor inline onclick
-        window.togglePricing = togglePricing;
+        // Exporteer naar global scope
         window.setPricingTab = setPricingTab;
 
         document.addEventListener('DOMContentLoaded', function () {
             initCookieBanner();
             initReveal();
-
-            // Zorg dat de correcte tab initieel zichtbaar is
             setPricingTab('handel');
         });
     })();
